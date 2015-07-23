@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>BookRest</title>
-    <link rel="stylesheet" href="/site/inc/lib/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/site/inc/site/style.css">
-    <script type="text/javascript" src="/site/inc/lib/js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="/site/inc/lib/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/site/inc/site/master.js"></script>
+    <link rel="stylesheet" href="inc/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="inc/site/style.css">
+    <script type="text/javascript" src="inc/lib/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="inc/lib/js/bootstrap.js"></script>
+    <script type="text/javascript" src="inc/site/master.js"></script>
 </head>
 <body>
 
