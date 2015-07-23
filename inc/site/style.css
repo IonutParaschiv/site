@@ -1,0 +1,159 @@
+/*BOOTSTRAP OVERRIDE*/
+.container-fluid{
+    padding-left:100px;
+    padding-right: 100px;
+}
+.nav-pills>li>a{
+    border-radius: 0;
+}
+
+.main-nav,
+.main-nav .nav{
+    background-color: #454545;
+}
+.main-nav a{
+    text-transform: uppercase;
+    color:#bebebe;
+     background-color: #454545;
+}
+.main-nav li a:hover,
+.main-nav li a:focus{
+    color: #fff;
+    background-color: #454545 ;
+}
+.main-nav li:hover{
+    background-color: #454545;
+}
+
+.subnav {
+    width: 100%;
+}
+
+.stackedNav{
+    width:170px;
+    background-color: #3f3f3f;
+    color:white;
+}
+.stackedNav a{
+    color: #bebebe;
+}
+
+.stackedNav li.active a{
+    color: #bebebe;
+}
+
+/*COMMONS*/
+.button-wide{
+    width:100%;
+}
+.button-half{
+    width: 45%;
+    margin-right: 10px;
+}
+.formTitle{
+    color:green;
+    text-align: center;
+    text-decoration: underline;
+}
+.companyControlBtn{
+    display: none;
+}
+/*LOGIN FORM*/
+.loginModal{
+    margin-top:100px;
+}
+.loginModal .modal-content{
+    border-radius: 0;
+}
+.loginModal .modal-header{
+    background-color: #454545;
+    color:#fff;
+}
+.loginModal .modal-body{
+}
+.loginModal .close{
+    color:#fff;
+}
+.loginModal form input{
+    border-radius: 0;
+}
+.loginModal .userfeedback{
+    min-height: 72px;
+}
+#userImg{
+    width:100px;
+    height:95px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    margin: auto;
+    margin-top:-40px;
+}
+#userImg img{
+    width: 100px;
+}
+/*CONTENT*/
+.wide{
+    background-image: url('../img/main_header.png');
+    min-height: 400px;
+}
+/*CALENDAR*/
+.calendarContainer{
+    width:500px;
+    height:500px;
+    display: block;
+    left:0;
+    position: absolute;
+    top:100px;
+}
+.calendarContainer iframe{
+    width: 100%;
+    height: 100%;
+    border:none;
+}
+/*Account settings*/
+.accountForm{
+    width:60%;
+    margin: auto;
+    outline: 1px solid #efefef;
+    padding:20px;
+}
+/*Comapany settings*/
+.companyContainer{
+    width:75%;
+    outline: 1px solid black;
+    margin-top:-164px;
+    height: 480px;
+}
+.createCompany,
+.createStaff,
+.createServices{
+    width:30%;
+    outline: 1px solid #efefef;
+    padding: 20px;
+    margin-top:20px;
+    height: 90%;
+    float: right;
+}
+.companyBlocks{
+    display: inline-block;
+}
+.companyBlocks h5{
+    margin-bottom: 50px;
+}
+.availableCompanies{
+    width:30%;
+    outline: 1px solid #efefef;
+    padding: 20px;
+    margin-top:20px;
+    height: 90%;
+}
+.servicesContainer{
+    position: absolute;
+}
+.servicesContainer ul{
+    list-style-type: none; 
+}
+.servicesContainer ul li{
+    padding:5px 0;
+}
