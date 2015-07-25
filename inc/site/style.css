@@ -135,6 +135,11 @@
     height: 90%;
     float: right;
 }
+.editTile{
+    width:50%;
+    outline:1px dotted yellow;
+}
+
 .companyBlocks{
     display: inline-block;
 }

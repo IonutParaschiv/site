@@ -3,6 +3,7 @@ if(!isset($_SESSION)){
     session_start(); 
 }
 define('API_URL', 'http://localhost/bookrest');
+
 switch ($_POST['method']) {
     case 'register':
         unset($_POST['method']);
@@ -165,7 +166,9 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $response = PostRequest(API_URL.'/api/v2/', $args, $auth);
+            $response = PostRequest(API_URL.'/api/v2/company/', $args, $auth);
+
+
             if($response->success){
                 echo json_encode($response);
             }else{
@@ -235,6 +238,7 @@ switch ($_POST['method']) {
                 'password' => $password
                 );
             $url = API_URL.'/api/v2/company/'.$data['companyid'];
+
             $result = GetRequest($url ,array(), $auth);
             if($result->success){
                 echo json_encode($result);
@@ -359,6 +363,25 @@ switch ($_POST['method']) {
                 echo json_encode($result);
             }
             break;
+        case 'getCompanyStaff':
+            unset($_POST['method']);
+
+            $email = $_SESSION['email'];
+            $password = $_SESSION['token'];
+
+            $data = cleanData($_POST);
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+
+            $url = API_URL.'/api/v2/company/'.$data['company_id'].'/staff/';
+            $result = getData($url , $auth);
+            if($result->success){
+                echo json_encode($result);
+            }
+            break;
     default:
         echo "Unknown service";
         die;
@@ -431,6 +454,7 @@ function GetRequest($host, $args = array(), $authArgs = array()){
 
     
     $jsondata = curl_exec($ch);
+
     curl_close($ch);
     # Decode JSON String
     if($data = json_decode($jsondata)) {

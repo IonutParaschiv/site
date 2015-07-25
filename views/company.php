@@ -114,8 +114,11 @@
     <div class="staffForm submenu_item hidden">
     <div class="form-group">
         <select onchange="service.getAll('availableCompaniesStaffSelect');" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesStaffSelect">
-          <option value="">Nothing selected</option>
+          <option value="0">Nothing selected</option>
         </select>
+    </div>
+    <div class="availableStaff editTile">
+      
     </div>
     <div class='createStaff staffForm'>
     <div class="userfeedback_staff_create"></div>
@@ -137,6 +140,7 @@
           <button type="submit" onclick="staff.create();return false;" class="btn btn-default button-wide">Save</button>
       </form>
     </div>
+    
     </div>
 <!-- Services BLOCK -->
     

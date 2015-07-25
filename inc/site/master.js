@@ -153,6 +153,13 @@ var company = {
     }else{
       $('.companyControlBtn').show();
     }
+    if(id == 0){
+      $('#companyEditForm #name').val('');
+      $('#companyEditForm #email').val('');
+      $('#companyEditForm #address').val('');
+      $('#companyEditForm #openingH').val('');
+      return false;
+    }
     var args = "method=getSingleCompany&companyid="+id
     $.ajax({
       type: "POST",
@@ -169,14 +176,16 @@ var company = {
               $('#companyEditForm #address').val(company[i].address);
               $('#companyEditForm #openingH').val(company[i].opening_h);
             }
+
           }
+
         }
       }
     })
+
   },
   getAll: function(){
     var args = "method=getAllCompanies";
-
     $.ajax({
       type:"POST",
       url: "/bookrest/site/inc/lib/php/RequestHandler.php",
@@ -186,12 +195,16 @@ var company = {
         if(data.success){
           var companies = JSON.parse(data.data)
           var html = '<option value="0">Nothing selected</option>';
+          var selected = 'selected';
           if (companies != undefined && companies.length != 0) {
                 for(var i = 0; i<companies.length; i++){
-                  html += '<option value="'+companies[i].id+'">'+companies[i].name+'</option>'
+                  html += '<option '+selected+' value="'+companies[i].id+'">'+companies[i].name+'</option>';
+                  
+                  selected = '';
                 }
                 $('.availableCompaniesSelect').empty();
                 $('.availableCompaniesSelect').append(html);
+                staff.getAll(companies[0].id);
             }
           
         }
@@ -222,6 +235,30 @@ var staff = {
       }
     })
   },
+  getAll: function(companyid){
+    var args = "method=getCompanyStaff&company_id="+companyid
+    $.ajax({
+      type: "POST",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        var data = JSON.parse(data);
+        if(data.success){
+          var staffArr = JSON.parse(data.data);
+          if(staffArr.length > 0){
+            var html = '';
+            for(i=0; i<staffArr.length; i++){
+              html  = "<div onclick='showEditForm("+staffArr[i].id+")' class='staffContainer'>";
+              html += "<span> "+staffArr[i].name+" "+staffArr[i].surname+"</span>";
+              html += "</div>"
+              $('.availableStaff').append(html);
+              console.log(staffArr[i]);
+            }
+          }
+        }
+      }
+    })
+  }
 };
 var service = {
 
