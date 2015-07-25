@@ -44,10 +44,10 @@ logout: function(){
     $.ajax({
 
         type: "POST",
-        url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+        url: "/bookrest/site/inc/lib/php/RequestHandler.php",
         data: "method=logout" ,
         success: function(data){
-              window.location.href = "/bachelor/site";
+              window.location.href = "/bookrest/site";
         },
       });
   },
@@ -74,7 +74,7 @@ edit: function(){
     var args = "method=editAccount&"+$("#editAccountForm").serialize();
     $.ajax({
       type: "POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
       },
@@ -90,7 +90,7 @@ var company = {
     var args = "method=createCompany&"+$('#companyCreateForm').serialize();
     $.ajax({
       type: "POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data)
@@ -109,7 +109,7 @@ var company = {
         var args = "method=editCompany&"+$('#companyEditForm').serialize();
         $.ajax({
           type: 'POST',
-          url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+          url: "/bookrest/site/inc/lib/php/RequestHandler.php",
           data: args,
           success: function(data){
             data = JSON.parse(data);
@@ -135,7 +135,7 @@ var company = {
       var args = "method=deleteCompany&companyId="+$('#companyEditForm #availableCompaniesSelect').val();
       $.ajax({
         type: 'POST',
-        url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+        url: "/bookrest/site/inc/lib/php/RequestHandler.php",
         data: args,
         success: function(data){
           if(data){
@@ -156,7 +156,7 @@ var company = {
     var args = "method=getSingleCompany&companyid="+id
     $.ajax({
       type: "POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data);
@@ -179,7 +179,7 @@ var company = {
 
     $.ajax({
       type:"POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data);
@@ -206,14 +206,12 @@ var staff = {
   create: function(){
     var companyId = $('#availableCompaniesStaffSelect').val();
     var args = "method=createStaff&companyId="+companyId+'&'+$('#staffCreateForm').serialize();
-    console.log(args);
     $.ajax({
       type: "POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data);
-        console.dir(data);
         if(!data.success){
           feedback.alert('.userfeedback_staff_create', data.message);
         }else{
@@ -230,14 +228,12 @@ var service = {
   create: function(){
     var companyId = $('#availableCompaniesServiceSelect').val();
     var args = "method=createService&companyId="+companyId+'&'+$('#serviceCreateForm').serialize();
-    console.log(args);
     $.ajax({
       type: "POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data);
-        console.dir(data);
         if(!data.success){
           feedback.alert('.userfeedback_service_create', data.message);
         }else{
@@ -265,7 +261,7 @@ var service = {
     var args = "method=getAllServices&company_id="+companyId;
     $.ajax({
       type:"POST",
-      url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
       data: args,
       success: function(data){
         data = JSON.parse(data);
@@ -280,7 +276,6 @@ var service = {
           }
           $('#servicesList').html(html);
           $('#availableServices').html(checkboxes);
-          console.dir(services);
                     
         }
       }

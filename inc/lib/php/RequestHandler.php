@@ -2,7 +2,7 @@
 if(!isset($_SESSION)){
     session_start(); 
 }
-define('API_URL', 'http://localhost/bachelor');
+define('API_URL', 'http://localhost/bookrest');
 switch ($_POST['method']) {
     case 'register':
         unset($_POST['method']);
@@ -119,12 +119,10 @@ switch ($_POST['method']) {
                 'password' => $password
                 );
 
-            $response = getData(API_URL.'api/v2/user/'.$_POST['id'], $auth);
+            $response = getData(API_URL.'/api/v2/user/'.$_POST['id'], $auth);
             if($response->success){
                 echo $response->data;
             }
-            // echo json_encode($response);
-            // echo $_POST['id'];
         break;
         case "editAccount":
             unset($_POST['method']);
@@ -167,7 +165,7 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $response = PostRequest(API_URL.'/api/v2/user/'.$_SESSION['uid'].'/company', $args, $auth);
+            $response = PostRequest(API_URL.'/api/v2/', $args, $auth);
             if($response->success){
                 echo json_encode($response);
             }else{
@@ -196,7 +194,7 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $response = PostRequest(API_URL.'/api/v2/user/'.$_SESSION['uid'].'/company/'.$data['companyId'], $args, $auth);
+            $response = PostRequest(API_URL.'/api/v2/company/'.$data['companyId'], $args, $auth);
             if($response->success){
                 echo json_encode($response);
             }else{
@@ -219,7 +217,7 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $url = API_URL.'/api/v2/user/'. $_SESSION['uid'].'/company/'.$data['companyId'];
+            $url = API_URL.'/api/v2/company/'.$data['companyId'];
             $response = deleteEntry($url ,$auth);
 
             echo $response;
@@ -236,7 +234,7 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $url = API_URL.'/api/v2/user/'.$_SESSION['uid'].'/company/'.$data['companyid'];
+            $url = API_URL.'/api/v2/company/'.$data['companyid'];
             $result = GetRequest($url ,array(), $auth);
             if($result->success){
                 echo json_encode($result);
@@ -252,8 +250,9 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $url = API_URL.'/api/v2/user/'.$_SESSION['uid'].'/company';
+            $url = API_URL.'/api/v2/company/';
             $result = getData($url , $auth);
+
             if($result->success){
                 echo json_encode($result);
             }
@@ -322,7 +321,11 @@ switch ($_POST['method']) {
             $args->name = $data['name'];
             $args->surname = $data['surname'];
             $args->email = $data['email'];
-            $args->services = $data['services'];
+            #only send services if they are supplied
+            if(!empty($data['services'])){
+                $args->services = $data['services'];
+            }
+            
 
             $url = API_URL.'/api/v2/company/'.$data['companyId'].'/staff';
 
@@ -349,8 +352,9 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $url = API_URL.'/api/company/'.$data['company_id'].'/service';
+            $url = API_URL.'/api/v2/company/'.$data['company_id'].'/service/';
             $result = getData($url , $auth);
+
             if($result->success){
                 echo json_encode($result);
             }
@@ -383,6 +387,7 @@ function PostRequest($host, $args, $authArgs = array()){
 
     
     $jsondata = curl_exec($ch);
+
     curl_close($ch);
     # Decode JSON String
     if($data = json_decode($jsondata)) {
@@ -461,6 +466,8 @@ function getData($path, $authArgs){
 
     
     $jsondata = curl_exec($ch);
+    // var_dump($path);
+    // var_dump($jsondata);
     curl_close($ch);
 
     if($data = json_decode($jsondata)) {
@@ -471,8 +478,15 @@ function getData($path, $authArgs){
 
         return $response;
     
-    }
+    }elseif(is_array(json_decode($jsondata))){
+        $response = new stdClass();
+        $response->status = 200;
+        $response->success = true;
+        $response->data = json_encode(array());
 
+        return $response;
+    }
+    
     $response = new stdClass();
 
     $response->success = false;

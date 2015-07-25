@@ -12,7 +12,7 @@
 
 <div class="main-nav container-fluid">
     <ul class="nav navbar-nav navbar-default navbar-right">
-      <li><a href="/bachelor/site">Home</a></li>
+      <li><a href="/bookrest/site">Home</a></li>
       <?php if(empty($_COOKIE['userSession'])){
         echo '<li><a href="#" data-toggle="modal" data-target=".loginModal">Login</a></li>
       <li><a href="#" data-toggle="modal" data-target=".registerModal">Register</a></li>';

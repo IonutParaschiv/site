@@ -3,7 +3,7 @@
       $cookie = json_decode(base64_decode($_COOKIE['userSession']));
       $userId = $cookie->uid;
   }else{
-      header('Location:/bachelor/site');
+      header('Location:/bookrest/site');
   }
 ?>
 
@@ -11,22 +11,22 @@
 <html>
 <head>
     <title>BookRest</title>
-    <link rel="stylesheet" href="/bachelor/site/inc/lib/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/bachelor/site/inc/site/style.css">
-    <link rel="stylesheet" type="text/css" href="/bachelor/site/inc/site/subnav.css">
-    <link rel="stylesheet" type="text/css" href="/bachelor/site/inc/lib/bootstrap_select/dist/css/bootstrap-select.css">
-    <script type="text/javascript" src="/bachelor/site/inc/lib/js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="/bachelor/site/inc/lib/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/bachelor/site/inc/site/master.js"></script>
+    <link rel="stylesheet" href="/bookrest/site/inc/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bookrest/site/inc/site/style.css">
+    <link rel="stylesheet" type="text/css" href="/bookrest/site/inc/site/subnav.css">
+    <link rel="stylesheet" type="text/css" href="/bookrest/site/inc/lib/bootstrap_select/dist/css/bootstrap-select.css">
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/site/master.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/bachelor/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="/bookrest/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
 
 </head>
 <body>
 
   <div class="main-nav container-fluid">
       <ul class="nav navbar-nav navbar-default navbar-right">
-        <li><a href="/bachelor/site">Home</a></li>
+        <li><a href="/bookrest/site">Home</a></li>
         <?php if(empty($_COOKIE['userSession'])){
           echo '<li><a href="#" data-toggle="modal" data-target=".loginModal">Login</a></li>
         <li><a href="#" data-toggle="modal" data-target=".registerModal">Register</a></li>';
@@ -39,9 +39,9 @@
   </div>
   <div class="wide-nav">
       <ul class='nav navbar-nav navbar-default navbar-left subnav'>
-        <li><a href="/bachelor/site/views/account.php">Bookings</a></li>
-        <li><a href="/bachelor/site/views/settings.php">Settings</a></li>
-        <li><a href="/bachelor/site/views/company.php">Company</a></li>
+        <li><a href="/bookrest/site/views/account.php">Bookings</a></li>
+        <li><a href="/bookrest/site/views/settings.php">Settings</a></li>
+        <li><a href="/bookrest/site/views/company.php">Company</a></li>
         <li><a href="#">Widget</a></li>
       </ul>
   </div>
@@ -64,7 +64,7 @@
       <div class="companyBlocks availableCompanies">
         <h5 class="formTitle"> Available Companies</h5>
         <div class="userfeedback_company_edit"></div>
-        <!-- <script>company.getAll();</script> -->
+        <script>company.getAll();</script>
         <form id="companyEditForm">
             <div class="form-group">
               <select onchange="company.get()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelect">
@@ -173,6 +173,6 @@
     </div>
   </div>
 
-    <script type="text/javascript" src="/bachelor/site/inc/lib/js/subnav.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/subnav.js"></script>
 </body>
 </html>

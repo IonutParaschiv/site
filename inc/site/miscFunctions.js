@@ -3,9 +3,10 @@ var fill = {
         var args = "method=getAccount&id="+id;
         $.ajax({
           type: "POST",
-          url: "/bachelor/site/inc/lib/php/RequestHandler.php",
+          url: "/bookrest/site/inc/lib/php/RequestHandler.php",
           data: args,
           success: function(data){
+            console.log(data)
             var dataArray = JSON.parse(data);
             for(var i = 0; i<dataArray.length; i++ ){
                 $('#name').val(dataArray[i].name);
