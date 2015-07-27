@@ -19,32 +19,42 @@
     <script type="text/javascript" src="/bookrest/site/inc/lib/js/bootstrap.js"></script>
     <script type="text/javascript" src="/bookrest/site/inc/site/master.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/bookrest/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/site/miscFunctions.js"></script>
+
 
 </head>
 <body>
 
-  <div class="main-nav container-fluid">
-      <ul class="nav navbar-nav navbar-default navbar-right">
-        <li><a href="/bookrest/site">Home</a></li>
-        <?php if(empty($_COOKIE['userSession'])){
-          echo '<li><a href="#" data-toggle="modal" data-target=".loginModal">Login</a></li>
-        <li><a href="#" data-toggle="modal" data-target=".registerModal">Register</a></li>';
-        }else{
-          echo '<li><a href="#">My Account</a></li>';
-          echo '<li><a href="" onclick="user.logout();return false;">Logout</a></li>';
-        }
-        ?>
-      </ul>
-  </div>
-  <div class="wide-nav">
+<div class="main-nav container-fluid">
+    <img src='/bookrest/site/inc/img/bookfy.png' alt="logo" id="logo"/>
+    <ul class="nav navbar-nav navbar-default navbar-right">
+      <li><a href="/bookrest/site">Home</a></li>
+      <?php if(empty($_COOKIE['userSession'])){
+        echo '<li><a href="#" data-toggle="modal" data-target=".loginModal">Login</a></li>
+      <li><a href="#" data-toggle="modal" data-target=".registerModal">Register</a></li>';
+      }else{
+        echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My account<span class="caret"></span></a>';
+        echo '<ul class="dropdown-menu">';
+        echo '<li><a href="/bookrest/site/views/account.php">Bookings</a></li><li role="separator" class="divider"></li>';
+        echo '<li><a href="/bookrest/site/views/settings.php">Settings</a></li><li role="separator" class="divider"></li>';
+        echo '<li><a href="/bookrest/site/views/company.php">Company</a></li><li role="separator" class="divider"></li>';
+        echo '<li><a href="#">Widget</a></li>';
+        echo '</ul></li>';
+        // echo '<li class="dropdown"><a href="views/account.php">My Account</a></li>';
+        echo '<li><a href="" onclick="user.logout();return false;">Logout</a></li>';
+      }
+      ?>
+    </ul>
+</div>
+  <!-- <div class="wide-nav">
       <ul class='nav navbar-nav navbar-default navbar-left subnav'>
         <li><a href="/bookrest/site/views/account.php">Bookings</a></li>
         <li><a href="/bookrest/site/views/settings.php">Settings</a></li>
         <li><a href="/bookrest/site/views/company.php">Company</a></li>
         <li><a href="#">Widget</a></li>
       </ul>
-  </div>
+  </div> -->
   <div class="stackedNav">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a data-target='companyForm' class='subnav_node' href="">Manage Company</a></li>
@@ -112,32 +122,66 @@
     
 <!-- STAFF BLOCK -->
     <div class="staffForm submenu_item hidden">
-    <div class="form-group">
+    <div class="form-group top_group">
         <select onchange="service.getAll('availableCompaniesStaffSelect');" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesStaffSelect">
           <option value="0">Nothing selected</option>
         </select>
+        <button class="btn btn-wide btn-custom1 noHover" onclick="show.staffCreate();">Create new staff member</button>
+
     </div>
     <div class="availableStaff editTile">
       
     </div>
-    <div class='createStaff staffForm'>
-    <div class="userfeedback_staff_create"></div>
+    <div class='createStaff staff hiddenForm'>
+      <div class="userfeedback_staff_create"></div>
       <form id="staffCreateForm">
           <div class="form-group">
-            <input type="text" class="form-control" id="name" name="name"  placeholder=" Staff name" value="Jax">
+            <input type="text" class="form-control" id="name" name="name"  placeholder=" Staff name" value="">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="surname" name="surname"  placeholder=" Staff surname" value="Seymour">
+            <input type="text" class="form-control" id="surname" name="surname"  placeholder=" Staff surname" value="">
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" id="email" name="email"  placeholder="Staff email" value="jax@seymour.com">
+            <input type="email" class="form-control" id="email" name="email"  placeholder="Staff email" value="">
           </div>
-          <div class="form-group" id="availableServices">
-          <label for="email">Services Available</label>
+          <div class="form-group availableServices">
+          <label for="services">Services Available</label>
             
           </div>
           <br/>
-          <button type="submit" onclick="staff.create();return false;" class="btn btn-default button-wide">Save</button>
+          <button type="submit" onclick="staff.create();return false;" class="btn btn-default button-half">
+            <span class="glyphicon glyphicon-ok-sign"></span> Save
+          </button>
+          <button  onclick="hide.staffCreate();return false;" class="btn btn-default button-half btn-warning">
+            <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+          </button>
+      </form>
+    </div>
+
+    <div class='editStaff staff hiddenForm'>
+      <div class="userfeedback_staff_create"></div>
+      <form id="staffEditForm">
+          <input type="hidden" id='staffId' name='staffId' value=""/>
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" name="name"  placeholder=" Staff name" value="">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="surname" name="surname"  placeholder=" Staff surname" value="">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email"  placeholder="Staff email" value="">
+          </div>
+          <div class="form-group availableServices">
+          <label for="services">Services Available</label>
+            
+          </div>
+          <br/>
+          <button type="submit" onclick="staff.edit();return false;" class="btn btn-default button-half">
+            <span class="glyphicon glyphicon-ok-sign"></span> Update
+          </button>
+          <button  onclick="hide.editStaff();return false;" class="btn btn-default button-half btn-warning">
+            <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+          </button>
       </form>
     </div>
     

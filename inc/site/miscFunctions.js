@@ -17,3 +17,25 @@ var fill = {
         });
     }
 };
+
+var show = {
+  staffCreate: function(){
+      $('.createStaff').removeClass('hiddenForm').addClass('visible');
+    },
+  editStaff: function(){
+      $('.editStaff').removeClass('hiddenForm').addClass('visible');
+  }
+}
+
+var hide = {
+  staffCreate: function(){
+      $('.createStaff').removeClass('visible').addClass('hiddenForm');
+    },
+  editStaff: function(){
+      $('.editStaff').removeClass('visible').addClass('hiddenForm');
+  }
+}
+
+function getVal(selector){
+  return selector.value;
+}

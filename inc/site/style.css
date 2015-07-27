@@ -8,8 +8,23 @@
 }
 
 .main-nav,
-.main-nav .nav{
+.main-nav .nav,
+.dropdown-menu,
+.nav .dropdown.open a{
     background-color: #454545;
+}
+.dropdown-menu .divider{
+    background-color: #393939;
+}
+.dropdown-menu>li>a{
+    color:#bebebe;
+}
+.dropdown-menu>li>a:hover{
+    color:#bebebe;
+}
+.main-nav .nav{
+    padding-top: 8px;
+    font-size: 17px;
 }
 .main-nav a{
     text-transform: uppercase;
@@ -24,15 +39,21 @@
 .main-nav li:hover{
     background-color: #454545;
 }
-
+#logo{
+    margin-left:-65px;
+}
 .subnav {
-    width: 100%;
+    width: 88%;
+    margin-left: 12%;
 }
 
 .stackedNav{
-    width:170px;
-    background-color: #3f3f3f;
+    width:181px;
+    background-color: #252932;
     color:white;
+    height: 100%;
+    min-height: 500px;
+    position: fixed;
 }
 .stackedNav a{
     color: #bebebe;
@@ -50,6 +71,21 @@
     width: 45%;
     margin-right: 10px;
 }
+.button-half .glyphicon{
+    left:-12px;
+}
+.btn-custom1{
+    background-color: #005E62;
+    color:#B9D2D9;
+    border:none;
+}
+.btn-custom1.noHover:hover,
+.btn-custom1.noHover:focus{
+    background-color: #005E62;
+    color:#B9D2D9;
+    border:none;
+}
+
 .formTitle{
     color:green;
     text-align: center;
@@ -92,6 +128,12 @@
 #userImg img{
     width: 100px;
 }
+.top_group{
+    padding-top: 10px;
+}
+.hiddenForm{
+    display: none !important;
+}
 /*CONTENT*/
 .wide{
     background-image: url('../img/main_header.png');
@@ -121,12 +163,11 @@
 /*Comapany settings*/
 .companyContainer{
     width:75%;
-    outline: 1px solid black;
-    margin-top:-164px;
-    height: 480px;
+    border-left: 1px solid black;
+    min-height: 480px;
 }
 .createCompany,
-.createStaff,
+.staff,
 .createServices{
     width:30%;
     outline: 1px solid #efefef;
@@ -137,9 +178,14 @@
 }
 .editTile{
     width:50%;
-    outline:1px dotted yellow;
+    display: inline-block;
+    vertical-align: top;
 }
-
+.staff{
+    width: 45%;
+    display: inline-block;
+    margin-top: 0;
+}
 .companyBlocks{
     display: inline-block;
 }
@@ -161,4 +207,34 @@
 }
 .servicesContainer ul li{
     padding:5px 0;
+}
+/*STAFF MEMBER LIST*/
+.staffContainer{
+    padding:5px;
+    border-bottom: 1px solid black;
+}
+.staffContainer .staffDetails{
+    font-size: 10px;
+}
+.staffContainer .staffDetails,
+.staffContainer .staffName{
+    width: 80%;
+}
+.controlBtns{
+    width: 15%;
+    float:right;
+    margin-top:-20px;
+    font-size: 20px;
+}
+.controlBtns .glyphicon{
+    margin-right:10px;
+}
+.controlBtns .glyphicon:hover{
+    cursor:pointer;
+}
+.controlBtns .glyphicon-remove-circle:before{
+    color:#c9302c;
+}
+.controlBtns .glyphicon-edit:before{
+    color:#f0ad4e;
 }

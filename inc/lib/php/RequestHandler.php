@@ -382,6 +382,76 @@ switch ($_POST['method']) {
                 echo json_encode($result);
             }
             break;
+        case 'deleteStaff':
+            unset($_POST['method']);
+            $data = cleanData($_POST);
+
+            $staffid = $data['staffId'];
+
+            $password = $_SESSION['token'];
+            $email = $_SESSION['email'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/staff/'.$staffid;
+            $response = deleteEntry($url ,$auth);
+
+            echo $response;
+            break;
+        case 'getSingleStaff':
+            unset($_POST['method']);
+            $data = cleanData($_POST);
+            $email = $_SESSION['email'];
+            $password = $_SESSION['token'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/staff/'.$data['staffId'];
+            $result = GetRequest($url ,array(), $auth);
+            if($result->success){
+                echo json_encode($result);
+            }
+            break;
+        case 'editStaff':
+            unset($_POST['method']);
+            $data = $_POST;
+            $email = $_SESSION['email'];
+            $password = $_SESSION['token'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+            );
+
+
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/staff/'.$data['staffId'];
+
+            $args = new stdClass();
+            $args->name = $data['name'];
+            $args->surname = $data['surname'];
+            $args->email = $data['email'];
+            #only send services if they are supplied
+            if(!empty($data['services'])){
+                $args->services = $data['services'];
+            }
+            $result = PutRequest($url, $args, $auth);
+
+            if($result->success){
+                echo json_encode($result);
+            }else{
+                $json = array(
+                        'success' => false,
+                        'message' => 'There has been an issue'
+                    );
+                echo json_encode($json);die();
+            }
+
+
+            break;
     default:
         echo "Unknown service";
         die;
@@ -431,6 +501,47 @@ function PostRequest($host, $args, $authArgs = array()){
     return $response; 
 }
 
+function PutRequest($host, $args, $authArgs = array()){
+     $params = array(
+            'json' => json_encode($args)
+        );
+    $email = $authArgs['email'];
+    $password = $authArgs['password'];
+    $query_string = http_build_query($params);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $host);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, $email.":".$password);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    
+    $jsondata = curl_exec($ch);
+
+    curl_close($ch);
+    # Decode JSON String
+    if($data = json_decode($jsondata)) {
+        $response = new stdClass();
+        $response->status = 200;
+        $response->success = true;
+        $response->data = json_encode($data);
+
+        return $response;
+    
+    }
+
+    $response = new stdClass();
+
+    $response->statusCode = 500;
+    $response->statusText = 'Unknown API error';
+
+    return $response; 
+}
 
 function GetRequest($host, $args = array(), $authArgs = array()){
 

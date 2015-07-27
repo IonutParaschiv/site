@@ -204,6 +204,7 @@ var company = {
                 }
                 $('.availableCompaniesSelect').empty();
                 $('.availableCompaniesSelect').append(html);
+                company.get(companies[0].id);
                 staff.getAll(companies[0].id);
             }
           
@@ -228,8 +229,13 @@ var staff = {
         if(!data.success){
           feedback.alert('.userfeedback_staff_create', data.message);
         }else{
-          $('#serviceCreateForm').hide();
+          staff.getAll(companyId);
           feedback.success('.userfeedback_staff_create', 'Your staff member has been created');
+          setTimeout(function(){
+            $('.userfeedback_staff_create').html('');
+            $('.createStaff input').val('');
+            $(".createStaff").removeClass('visible').addClass('hiddenForm');
+          }, 1000)
 
         }
       }
@@ -243,16 +249,99 @@ var staff = {
       data: args,
       success: function(data){
         var data = JSON.parse(data);
+        var html = '';
+        $('.availableStaff').html('');
         if(data.success){
           var staffArr = JSON.parse(data.data);
           if(staffArr.length > 0){
-            var html = '';
+            
             for(i=0; i<staffArr.length; i++){
-              html  = "<div onclick='showEditForm("+staffArr[i].id+")' class='staffContainer'>";
-              html += "<span> "+staffArr[i].name+" "+staffArr[i].surname+"</span>";
-              html += "</div>"
+              html  = "<div class='staffContainer'>";
+              html += "<p class='staffName'> "+staffArr[i].name+" "+staffArr[i].surname+"</p>";
+              html += "<div class='controlBtns'>";
+              html += "<span class='glyphicon glyphicon-edit' onclick='staff.showEdit("+staffArr[i].id+")'></span>";
+              html += "<span class='glyphicon glyphicon-remove-circle' onclick='staff.delete("+staffArr[i].id+")'></span>"
+              html += "</div>";
+              html += "<p class='staffDetails'> "+staffArr[i].email+"</p>";
+              html += "</div>";
               $('.availableStaff').append(html);
-              console.log(staffArr[i]);
+            }
+          }
+        }
+      }
+    })
+  },
+  delete: function(id){
+    if(confirm('The staff member will be deleted. \n Proceed?')){
+      var companyId = $('#availableCompaniesStaffSelect').val();
+      var args = "method=deleteStaff&staffId="+id+"&companyId="+companyId;
+      $.ajax({
+        type: 'POST',
+        url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+        data: args,
+        success: function(data){
+          if(data){
+            staff.getAll(companyId);
+          }
+          
+        }
+      })
+    }
+  },
+  edit: function(id){
+
+
+    if(confirm('Your staff member will be edited. \n Proceed?')){
+        var companyId = $('#availableCompaniesStaffSelect').val();
+        var args = "method=editStaff&companyId="+companyId+"&"+$('#staffEditForm').serialize();
+        $.ajax({
+          type: "POST",
+          url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+          data: args,
+          success: function(data){
+            data = JSON.parse(data);
+            if(data.success){
+              staff.getAll(companyId);
+            }
+          }
+        });
+    }
+
+  },
+
+  showEdit: function(id){
+    service.getAll('availableCompaniesServiceSelect');
+    hide.staffCreate();
+    show.editStaff();
+    staff.get(id);
+    $('#staffId').val(id);
+  },
+
+  get: function(id){
+    var companyId = $('#availableCompaniesStaffSelect').val();
+    var args = "method=getSingleStaff&staffId="+id+"&companyId="+companyId;
+
+    var result = false;
+    $.ajax({
+      type: 'POST',
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        data = JSON.parse(data);
+        if(data.success){
+          parseData = JSON.parse(data.data);
+          for(var i=0; i<parseData.length; i++){
+            $('#staffEditForm #name').val(parseData[i].name);
+            $('#staffEditForm #surname').val(parseData[i].surname);
+            $('#staffEditForm #email').val(parseData[i].email);
+            $('#staffEditForm checkbox').prop('checked', false);
+            if(parseData[i].services != 'null'){
+              var parseService = JSON.parse(parseData[i].services);
+              var parseService = parseService[0];
+              for(var x = 0; x<parseService.length; x++){
+                var checkbox = $('#staffEditForm .service_'+parseService[x].id);
+                checkbox.prop('checked', true);
+              }
             }
           }
         }
@@ -308,11 +397,11 @@ var service = {
           var checkboxes = '';
           for(var i = 0; i< services.length; i++){
             html = html + '<li> <a href="#">'+services[i].name+'</a> </li>';
-            checkboxes =checkboxes + '<div class="checkbox"><label><input type="checkbox" name="services[]" value="'+services[i].id+'">'+services[i].name+'</label></div>';
+            checkboxes = checkboxes + '<div class="checkbox"><label><input type="checkbox" class="service_'+services[i].id+'" name="services[]" value="'+services[i].id+'">'+services[i].name+'</label></div>';
 
           }
           $('#servicesList').html(html);
-          $('#availableServices').html(checkboxes);
+          $('.availableServices').html(checkboxes);
                     
         }
       }
