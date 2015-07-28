@@ -20,6 +20,7 @@ var fill = {
 
 var show = {
   staffCreate: function(){
+      $('.editStaff').removeClass('visible').addClass('hiddenForm');
       $('.createStaff').removeClass('hiddenForm').addClass('visible');
     },
   editStaff: function(){

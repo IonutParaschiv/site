@@ -6,12 +6,43 @@
 .nav-pills>li>a{
     border-radius: 0;
 }
+@media (min-width: 768px){
+    .navbar>.container .navbar-brand{
+        left:15px;
+        position:absolute;
+    }
+}
+
 
 .main-nav,
 .main-nav .nav,
 .dropdown-menu,
-.nav .dropdown.open a{
-    background-color: #454545;
+.nav .dropdown.open a,
+.dropdown.open a:active,
+.dropdown.open a:focus,
+.dropdown.open a:hover,
+.navbar-inverse .navbar-nav>.open>a:hover{
+    background-color: #191C21;
+}
+.navbar-nav>li>.dropdown-menu{
+    margin-top:-1px;
+}
+.navbar-header{
+    width:100%;
+}
+.navbar.navbar-inverse{
+    background-color: #191C21;
+    min-height: 63px;
+    position:fixed;
+    left:0;
+    right: 0;
+    z-index: 999;
+}
+.main-nav{
+    position:fixed;
+    left:0;
+    right: 0;
+    width: 100%;
 }
 .dropdown-menu .divider{
     background-color: #393939;
@@ -29,18 +60,19 @@
 .main-nav a{
     text-transform: uppercase;
     color:#bebebe;
-     background-color: #454545;
+     background-color: #191C21;
 }
 .main-nav li a:hover,
 .main-nav li a:focus{
     color: #fff;
-    background-color: #454545 ;
+    background-color: #191C21 ;
 }
 .main-nav li:hover{
-    background-color: #454545;
+    background-color: #191C21;
 }
 #logo{
-    margin-left:-65px;
+    margin-top: -11px;
+    height: 50px;
 }
 .subnav {
     width: 88%;
@@ -52,11 +84,14 @@
     background-color: #252932;
     color:white;
     height: 100%;
-    min-height: 500px;
     position: fixed;
+    top:58px;
 }
 .stackedNav a{
     color: #bebebe;
+}
+.stackedNav li a:hover{
+    background-color: #337ab7;
 }
 
 .stackedNav li.active a{
@@ -93,6 +128,9 @@
 }
 .companyControlBtn{
     display: none;
+}
+.submenu_item{
+    margin-top:63px;
 }
 /*LOGIN FORM*/
 .loginModal{
@@ -164,7 +202,8 @@
 .companyContainer{
     width:75%;
     border-left: 1px solid black;
-    min-height: 480px;
+    height: 100%;
+    margin-left:180px;
 }
 .createCompany,
 .staff,
@@ -238,3 +277,64 @@
 .controlBtns .glyphicon-edit:before{
     color:#f0ad4e;
 }
+
+select {
+    padding:6px 12px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    background: #B7B7B7;
+    color:#fff;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+  width:180px
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}
+
+label {position:relative}
+label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+label:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+
+@media (max-width: 768px){
+    .navbar-header {
+        display: none;
+    }
+    .main-nav .navbar-header{
+        display: block;
+    }
+}
+
+
+
+

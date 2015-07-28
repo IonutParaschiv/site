@@ -178,7 +178,7 @@ var company = {
             }
 
           }
-
+        staff.getAll(id);
         }
       }
     })
@@ -266,6 +266,8 @@ var staff = {
               html += "</div>";
               $('.availableStaff').append(html);
             }
+          }else{
+            $('.availableStaff').html('<p>There are no staff members defined');
           }
         }
       }
@@ -404,6 +406,7 @@ var service = {
           $('.availableServices').html(checkboxes);
                     
         }
+      staff.getAll(companyId);
       }
     });
   },

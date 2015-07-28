@@ -3,7 +3,7 @@ if(!isset($_SESSION)){
     session_start(); 
 }
 define('API_URL', 'http://localhost/bookrest');
-
+// define('API_URL', 'http://87.72.83.66/bookrest');
 switch ($_POST['method']) {
     case 'register':
         unset($_POST['method']);
