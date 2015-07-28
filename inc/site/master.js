@@ -206,6 +206,7 @@ var company = {
                 $('.availableCompaniesSelect').append(html);
                 company.get(companies[0].id);
                 staff.getAll(companies[0].id);
+                service.getAll('availableCompaniesServiceSelect');
             }
           
         }
@@ -365,8 +366,14 @@ var service = {
         if(!data.success){
           feedback.alert('.userfeedback_service_create', data.message);
         }else{
-          $('#serviceCreateForm').hide();
           feedback.success('.userfeedback_service_create', 'Your service has been created');
+          service.getAll('availableCompaniesServiceSelect');
+          setTimeout(function(){
+            $('.userfeedback_service_create').html('');
+            $('.createServices input').val('');
+            $('.createServices textarea').val('');
+            $(".createServices").removeClass('visible').addClass('hiddenForm');
+          }, 1000)
 
         }
       }
@@ -374,13 +381,51 @@ var service = {
   },
 
 
-  delete: function(){
-    console.log('delete');
+  delete: function(id){
+    if(confirm('The service will be deleted. \n Proceed?')){
+      var companyId = $('#availableCompaniesServiceSelect').val();
+      var args = "method=deleteService&serviceId="+id+"&companyId="+companyId;
+      $.ajax({
+        type: 'POST',
+        url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+        data: args,
+        success: function(data){
+          if(data){
+            service.getAll('availableCompaniesServiceSelect');
+          }
+          
+        }
+      })
+    }
   },
 
 
   edit: function(){
-    console.log('edit');
+    if(confirm('Your service will be edited. \n Proceed?')){
+      var companyId = $('#availableCompaniesServiceSelect').val();
+      var args = "method=editService&companyId="+companyId+"&"+$('#serviceEditForm').serialize();
+
+      $.ajax({
+        type: 'POST',
+        url: '/bookrest/site/inc/lib/php/RequestHandler.php',
+        data: args,
+        success:function(data){
+          data = JSON.parse(data);
+          if(data.success){
+            service.getAll('availableCompaniesServiceSelect');
+          }
+        }
+      });
+
+
+    }
+
+  },
+
+  showEdit: function(id){
+    hide.serviceCreate();
+    show.editService();
+    service.get(id);
   },
 
   getAll: function(id){
@@ -395,14 +440,22 @@ var service = {
         data = JSON.parse(data);
         if(data.success){
           var services = JSON.parse(data.data);
+          $('.availableServicesContainer').html('');
           var html = '';
           var checkboxes = '';
           for(var i = 0; i< services.length; i++){
-            html = html + '<li> <a href="#">'+services[i].name+'</a> </li>';
+            html += "<div class='serviceContainer'>";
+            html += "<p class='serviceName'> "+services[i].name+"</p>";
+            html += "<div class='controlBtns'>";
+            html += "<span class='glyphicon glyphicon-edit' onclick='service.showEdit("+services[i].id+")'></span>";
+            html += "<span class='glyphicon glyphicon-remove-circle' onclick='service.delete("+services[i].id+")'></span>"
+            html += "</div>";
+            html += "<p class='serviceDetails'> "+services[i].price+"</p>";
+            html += "</div>";
             checkboxes = checkboxes + '<div class="checkbox"><label><input type="checkbox" class="service_'+services[i].id+'" name="services[]" value="'+services[i].id+'">'+services[i].name+'</label></div>';
 
           }
-          $('#servicesList').html(html);
+          $('.availableServicesContainer').html(html);
           $('.availableServices').html(checkboxes);
                     
         }
@@ -411,17 +464,32 @@ var service = {
     });
   },
 
+  get: function(id){
+    var companyId = $('#availableCompaniesServiceSelect').val();
+    var args = "method=getSingleService&serviceId="+id+"&companyId="+companyId;
 
-  get: function(){
-    console.log('get single');
+    $.ajax({
+      type: 'POST',
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        data = JSON.parse(data);
+        if(data.success){
+          var service = JSON.parse(data.data);
+
+          for(var i=0; i<service.length; i++){
+            $('.editService #serviceId').val(service[i].id);
+            $('.editService #name').val(service[i].name);
+            $('.editService #price').val(service[i].price);
+            $('.editService #description').val(service[i].description);
+            $('.editService #duration').val(service[i].duration);
+          }
+        }
+      }
+    });
   }
 
-
-
 }
-$(document).ready(function(){
-
-});
 
 //==========================================================================
 var feedback = {

@@ -51,7 +51,7 @@
         <li class="active"><a data-target='companyForm' class='subnav_node' href="">Manage Company</a></li>
         <li><a data-target='staffForm' class='subnav_node' href="#">Manage Staff</a></li>
         <li><a data-target='servicesForm' class='subnav_node' href="#">Manage Services</a></li>
-        <li><a href="#">Menu 3</a></li>
+        <!-- <li><a href="#">Menu 3</a></li> -->
       </ul>
   </div>
 
@@ -61,17 +61,17 @@
 
 <!-- COMPANY BLOCK -->
     <div class="submenu_item visible">
-
       <div class="companyBlocks availableCompanies">
-        <h5 class="formTitle"> Available Companies</h5>
         <div class="userfeedback_company_edit"></div>
+        <div class="form-group top_group">
+            <select onchange="company.get()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelect" >
+              <option value="0">Nothing selected</option>
+            </select>
+            <button class="btn btn-wide btn-custom1 noHover" onclick="show.staffCreate();return false;">Create new company</button>
+          </div>
         <script>company.getAll();</script>
         <form id="companyEditForm">
-            <div class="form-group">
-              <select onchange="company.get()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelect" >
-                <option value="0">Nothing selected</option>
-              </select>
-            </div>
+            
             <div class="form-group">
               <input type="text" class="form-control" id="name" name="name"  placeholder=" Company name" value="">
             </div>
@@ -89,7 +89,7 @@
             <button type="submit" onclick="company.delete(); return false;" class="btn companyControlBtn btn-danger button-half">Delete</button>
         </form>
       </div>
-      <div class="createCompany companyForm companyBlocks">
+      <div class="createCompany companyForm companyBlocks hiddenForm">
         <h5 class="formTitle"> Create new company</h5>
         <div class="userfeedback_company_create"></div>
         <form id="companyCreateForm">
@@ -180,33 +180,67 @@
 <!-- Services BLOCK -->
     
     <div class="createService servicesForm submenu_item hidden">
-    <div class="form-group">
+    <div class="form-group top_group">
         <select onchange="service.getAll('availableCompaniesServiceSelect');" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesServiceSelect">
           <option value="">Nothing selected</option>
         </select>
+        <button class="btn btn-wide btn-custom1 noHover" onclick="show.serviceCreate();">Create new service</button>
     </div>
     <div class="servicesContainer">
       <ul id='servicesList'>
         
       </ul>
     </div>
-    <div class="createServices servicesForm">
+    <div class="availableServicesContainer editTile">
+      
+    </div>
+    <div class="createServices servicesForm  services hiddenForm">
       <div class="userfeedback_service_create"></div>
         <form id="serviceCreateForm">
             <div class="form-group">
-              <input type="text" class="form-control" id="name" name="name"  placeholder="Service name" value="Service #1">
+              <input type="text" class="form-control" id="name" name="name"  placeholder="Service name" value="">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="price" name="price"  placeholder="Price" value="20">
+              <input type="text" class="form-control" id="price" name="price"  placeholder="Price" value="">
             </div>
             <div class="form-group">
-              <textarea class="form-control" id="description" name="description"  placeholder="Service Description">This is an awesome service</textarea>
+              <textarea class="form-control" id="description" name="description"  placeholder="Service Description"></textarea>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="duration" name="duration"  placeholder="Duration" value="120">
+              <input type="text" class="form-control" id="duration" name="duration"  placeholder="Duration" value="">
             </div>
             <br/>
-            <button type="submit" onclick="service.create(); return false;" class="btn btn-default button-wide">Save</button>
+            <button type="submit" onclick="service.create(); return false;" class="btn btn-default button-half">
+              <span class="glyphicon glyphicon-ok-sign"></span> Save
+            </button>
+            <button  onclick="hide.serviceCreate();return false;" class="btn btn-default button-half btn-warning">
+              <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+            </button>
+        </form>
+      </div>
+      <div class="editService services hiddenForm">
+      <div class="userfeedback_service_edit"></div>
+        <form id="serviceEditForm">
+            <input type="hidden" id='serviceId' name='serviceId' value=""/>
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" name="name"  placeholder="Service name" value="">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="price" name="price"  placeholder="Price" value="">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" id="description" name="description"  placeholder="Service Description"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="duration" name="duration"  placeholder="Duration" value="">
+            </div>
+            <br/>
+            <button type="submit" onclick="service.edit(); return false;" class="btn btn-default button-half">
+              <span class="glyphicon glyphicon-ok-sign"></span> Update
+            </button>
+            <button  onclick="hide.serviceCreate();return false;" class="btn btn-default button-half btn-warning">
+              <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+            </button>
         </form>
       </div>
     </div>

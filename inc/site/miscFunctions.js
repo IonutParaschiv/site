@@ -25,6 +25,13 @@ var show = {
     },
   editStaff: function(){
       $('.editStaff').removeClass('hiddenForm').addClass('visible');
+  },
+  serviceCreate: function(){
+    $('.editService').removeClass('visible').addClass('hiddenForm');
+    $('.createServices').removeClass('hiddenForm').addClass('visible');
+  },
+  editService: function(){
+    $('.editService').removeClass('hiddenForm').addClass('visible');
   }
 }
 
@@ -34,6 +41,12 @@ var hide = {
     },
   editStaff: function(){
       $('.editStaff').removeClass('visible').addClass('hiddenForm');
+  },
+  serviceCreate: function(){
+    $('.createServices').removeClass('visible').addClass('hiddenForm');
+  },
+  editService: function(){
+    $('.editService').removeClass('visible').addClass('hiddenForm');
   }
 }
 

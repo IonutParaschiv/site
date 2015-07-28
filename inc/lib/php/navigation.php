@@ -8,7 +8,7 @@
 
 
 	$nav .= '<div class="navbar-header">';
-    $nav .= '<a class="navbar-brand" href="#">';
+    $nav .= '<a class="navbar-brand" href="/bookrest/site">';
     $nav .= '<img src="/bookrest/site/inc/img/bookfy.png" alt="Brand" id="logo"/>';
     $nav .= '</a>';
     $nav .= '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">';
@@ -29,7 +29,7 @@
 
 
 	$loggedNav .= '<div class="navbar-header">';
-    $loggedNav .= '<a class="navbar-brand" href="#">';
+    $loggedNav .= '<a class="navbar-brand" href="/bookrest/site">';
     $loggedNav .= '<img src="/bookrest/site/inc/img/bookfy.png" alt="Brand" id="logo"/>';
     $loggedNav .= '</a>';
     $loggedNav .= '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">';

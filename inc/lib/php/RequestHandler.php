@@ -452,6 +452,75 @@ switch ($_POST['method']) {
 
 
             break;
+        case 'getSingleService':
+            unset($_POST['method']);
+            $data = cleanData($_POST);
+            $email = $_SESSION['email'];
+            $password = $_SESSION['token'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/service/'.$data['serviceId'];
+            $result = GetRequest($url ,array(), $auth);
+            if($result->success){
+                echo json_encode($result);
+            }
+            break;
+        case 'editService':
+            
+            unset($_POST['method']);
+
+            $email = $_SESSION['email'];
+            $password = $_SESSION['token'];
+            $data = cleanData($_POST);
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+
+            $args = new stdClass();
+            $args->name = $data['name'];
+            $args->price = $data['price'];
+            $args->description = $data['description'];
+            $args->duration = $data['duration'];
+
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/service/'.$data['serviceId'];
+
+            $result = PutRequest($url, $args, $auth);
+
+            if($result->success){
+                echo json_encode($result);
+            }else{
+                $json = array(
+                        'success' => false,
+                        'message' => 'There has been an issue'
+                    );
+                echo json_encode($json);die();
+            }
+
+            break;
+        case 'deleteService':
+            unset($_POST['method']);
+            $data = cleanData($_POST);
+
+            $serviceId = $data['serviceId'];
+
+            $password = $_SESSION['token'];
+            $email = $_SESSION['email'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/service/'.$serviceId;
+
+            $response = deleteEntry($url ,$auth);
+
+            echo $response;
+            break;
     default:
         echo "Unknown service";
         die;
