@@ -4,12 +4,25 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+
 	if(animating) return false;
 	animating = true;
 	
 	current_fs = $(this).parent();
 	next_fs = $(this).parent().next();
 	
+	if($(this).hasClass('checkEmail')){
+		var email = $('#email').val();
+	    if((email == '') || !isEmail(email)){
+	        $('.userfeedback').html('Please fill in a valid email');
+	        $('#email').focus()
+	        animating = false;
+	        return true;
+	    }else{
+	    	sendEmail(email);
+	    }
+	}
+
 	//activate next step on progressbar using the index of next_fs
 	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 	
@@ -74,5 +87,6 @@ $(".previous").click(function(){
 });
 
 $(".submit").click(function(){
+	console.log($("#msform").serialize());
 	return false;
 })

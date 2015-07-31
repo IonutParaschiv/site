@@ -85,7 +85,7 @@ body {
 	color: black;
 	text-transform: uppercase;
 	font-size: 9px;
-	width: 33.33%;
+	width: 25%;
 	float: left;
 	position: relative;
 }
@@ -123,6 +123,38 @@ body {
 	color: white;
 }
 
+select {
+    padding:6px 12px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    /*background: #B7B7B7;*/
+    color:#fff;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+  	width:100%;
+
+  	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
 
 
-
+#datetimepicker input{
+    width: 98%;
+}
+#datetimepicker{
+	text-align: left;
+}

@@ -1,0 +1,18 @@
+.close img{
+	width: 20px;
+
+}
+.close{
+	position: absolute;
+	top:10px;
+	right: 10px;
+	
+}
+.userfeedback{
+	font-size: 10px;
+	color:red;
+}
+
+.inputRed:focus{
+	border: 1px solid red;
+}

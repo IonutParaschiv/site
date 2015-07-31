@@ -1,5 +1,6 @@
 <?php 
-define('API_URL', 'http://localhost/bachelor');
+define('API_URL', 'http://localhost/bookrest');
+
 if(!empty($_POST)){
     switch ($_POST['method']) {
     case 'getServices':
@@ -13,7 +14,24 @@ if(!empty($_POST)){
             'email' => $email,
             'password' => $password
             );
-        $url = API_URL.'/api/company/'.$data['company_id'].'/service';
+        $url = API_URL.'/api/v2/company/'.$data['company_id'].'/service';
+        $result = getData($url , $auth);
+        if($result->success){
+            echo json_encode($result);
+        }
+        break;
+    case 'getStaff':
+        $email = 'ionut@htd.ro';
+        $password = '1234';
+
+        $data = $_POST;
+
+
+        $auth = array(
+            'email' => $email,
+            'password' => $password
+            );
+        $url = API_URL.'/api/v2/company/'.$data['company_id'].'/staff';
         $result = getData($url , $auth);
         if($result->success){
             echo json_encode($result);
