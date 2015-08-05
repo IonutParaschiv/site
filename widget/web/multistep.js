@@ -19,8 +19,41 @@ $(".next").click(function(){
 	        animating = false;
 	        return true;
 	    }else{
+	        $('.userfeedback').html('');
+
 	    	sendEmail(email);
 	    }
+	}
+
+	if($(this).hasClass('checkCode')){
+		var code = $('#confCode').val();
+
+		if((code == '') || (code.length != 6)){
+			$('.userfeedbackCode').html('Please fill in a valid code');
+			$('#confCode').focus()
+	        animating = false;
+	        return true;
+		}else{
+			animating = false;
+			$('.userfeedbackCode').html('');
+			getCodeData(code, function(data){
+				data = JSON.parse(data);
+				if(data.status == true){
+					$('.userfeedbackCode').html('');
+			        animating = true;
+					console.log('im true')
+				}else{
+					console.log(animating);
+					$('.userfeedbackCode').html('Please fill in a valid code');
+					$('#confCode').focus()
+			        animating = false;
+			        return false;
+				}
+				
+			});
+
+
+		}
 	}
 
 	//activate next step on progressbar using the index of next_fs
@@ -85,6 +118,8 @@ $(".previous").click(function(){
 		easing: 'easeInOutBack'
 	});
 });
+
+
 
 $(".submit").click(function(){
 	console.log($("#msform").serialize());

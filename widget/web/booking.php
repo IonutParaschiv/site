@@ -1,5 +1,6 @@
 <?php 
 define('API_URL', 'http://localhost/bookrest');
+define('WEBSERVICE_URL', 'http://localhost/bookrest');
 
 if(!empty($_POST)){
     switch ($_POST['method']) {
@@ -37,7 +38,40 @@ if(!empty($_POST)){
             echo json_encode($result);
         }
         break;
-    
+    case 'sendEmail':
+
+        $url = WEBSERVICE_URL.'/webservice/';
+        $email = $_POST['email'];
+
+        $params = new stdClass();
+        $params->email = $email;
+        $params->method = "sendConfirmationCode";
+
+
+        $response = callWebService($url, $params);
+
+        break;
+    case 'checkCode':
+
+        $url = WEBSERVICE_URL.'/webservice/';
+        $code = $_POST['code'];
+
+        $params = new stdClass();
+        $params->method = "checkCode";
+        $params->code = $code;
+
+        $response = callWebService($url, $params);
+
+        $result = new stdClass();
+        if($response == 'true'){
+            $result->status = true;
+            
+        }else{
+            $result->status = false;
+        }
+
+        echo json_encode($result);
+        break;
     default:
         # code...
         break;
@@ -87,7 +121,6 @@ function PostRequest($host, $args, $authArgs = array()){
 function getData($path, $authArgs){
     $email = $authArgs['email'];
     $password = $authArgs['password'];
-    // var_dump($path);die();
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $path);
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -101,7 +134,6 @@ function getData($path, $authArgs){
     $jsondata = curl_exec($ch);
     curl_close($ch);
 
-    // var_dump($jsondata);die();
     if($data = json_decode($jsondata)) {
         $response = new stdClass();
         $response->status = 200;
@@ -121,4 +153,25 @@ function getData($path, $authArgs){
     return $response; 
 }
 
+
+function callWebService($host, $args){
+    
+    $query_string = http_build_query($args);
+
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $host);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    
+    $jsondata = curl_exec($ch);
+    curl_close($ch);
+    return $jsondata;
+}
  ?>
+

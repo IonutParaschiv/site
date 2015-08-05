@@ -52,9 +52,11 @@
 	<fieldset>
 		<h2 class="fs-title">Confirm</h2>
 		<h3 class="fs-subtitle">We sent you a confirmation code on your email. Please input the code in the field bellow</h3>
-		<input type="text" name="confCode" placeholder="Confirmation code" />
+		<span class='userfeedbackCode'></span>
+
+		<input type="text" name="confCode" id="confCode" placeholder="Confirmation code" />
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
-		<input type="button" name="next" class="next action-button" value="Next" />
+		<input type="button" name="next" class="next action-button checkCode" value="Next" />
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Submit</h2>

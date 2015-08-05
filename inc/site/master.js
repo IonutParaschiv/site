@@ -106,17 +106,20 @@ var company = {
   },
   edit: function(){
     if(confirm('Your company will be edited. \n Proceed?')){
-        var args = "method=editCompany&"+$('#companyEditForm').serialize();
+        var companyId = $('#availableCompaniesSelect').val();
+        var args = "method=editCompany&companyId="+companyId+"&"+$('#companyEditForm').serialize();
         $.ajax({
           type: 'POST',
           url: "/bookrest/site/inc/lib/php/RequestHandler.php",
           data: args,
           success: function(data){
             data = JSON.parse(data);
+
             if(data.success){
               var company = JSON.parse(data.data);
               if(company != undefined && company.length !=0){
                 for(var i = 0; i<company.length; i++){
+
                   $('#companyEditForm #name').val(company[i].name);
                   $('#companyEditForm #email').val(company[i].email);
                   $('#companyEditForm #address').val(company[i].address);
@@ -132,13 +135,15 @@ var company = {
   },
   delete: function(){
     if(confirm('Your company will be deleted. \n Proceed?')){
-      var args = "method=deleteCompany&companyId="+$('#companyEditForm #availableCompaniesSelect').val();
+      var args = "method=deleteCompany&companyId="+$('#availableCompaniesSelect').val();
       $.ajax({
         type: 'POST',
         url: "/bookrest/site/inc/lib/php/RequestHandler.php",
         data: args,
         success: function(data){
+          console.log(data);
           if(data){
+            console.dir(data);
             company.getAll();
           }
           

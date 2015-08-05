@@ -197,7 +197,7 @@ switch ($_POST['method']) {
                 'email' => $email,
                 'password' => $password
                 );
-            $response = PostRequest(API_URL.'/api/v2/company/'.$data['companyId'], $args, $auth);
+            $response = PutRequest(API_URL.'/api/v2/company/'.$data['companyId'], $args, $auth);
             if($response->success){
                 echo json_encode($response);
             }else{

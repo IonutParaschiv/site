@@ -8,7 +8,8 @@
 	right: 10px;
 	
 }
-.userfeedback{
+.userfeedback,
+.userfeedbackCode{
 	font-size: 10px;
 	color:red;
 }

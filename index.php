@@ -29,9 +29,47 @@
 <div class="wide"></div>
 
 <div class="container">
+  <div class="col col-md-4">
+    <h2>Lorem ipsum</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+  </div>
+
+  <div class="col col-md-4">
+    <h2>Lorem ipsum</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+  </div>
+  <div class="col col-md-4">
+    <h2>Lorem ipsum</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+    </p>
+  </div>
 </div>
-
-
+<footer class='footer'>
+  footer contents here
+</footer>
 
 <!--modals-->
 <!--LOGIN MODAL-->

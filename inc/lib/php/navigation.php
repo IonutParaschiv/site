@@ -46,7 +46,7 @@
     $loggedNav .= '<li><a href="/bookrest/site/views/account.php">Bookings</a></li><li role="separator" class="divider"></li>';
     $loggedNav .= '<li><a href="/bookrest/site/views/settings.php">Settings</a></li><li role="separator" class="divider"></li>';
     $loggedNav .= '<li><a href="/bookrest/site/views/company.php">Company</a></li><li role="separator" class="divider"></li>';
-    $loggedNav .= '<li><a href="#">Widget</a></li>';
+    $loggedNav .= '<li><a href="/bookrest/site/views/widget.php">Widget</a></li>';
     $loggedNav .= '</ul></li>';
     $loggedNav .= '<li><a href="" onclick="user.logout();return false;">Logout</a></li>';
     $loggedNav .= '</ul>';

@@ -76,11 +76,28 @@ function getStaff(companyId){
 }
 
 function sendEmail(email){
-    console.log('sending email to '+email);
+	var args = "method=sendEmail&email="+email
+	$.ajax({
+		type: "POST",
+		url: url+ "booking.php",
+		data: args,
+		success: function(data){
+			console.log(data);
+		}
+	})
 }
 
+var getCodeData =  function (code, callback){
+	var args = 'method=checkCode&code='+code
 
-
+	return $.ajax({
+		type: "POST",
+		url: url+ "booking.php",
+		data: args,
+		async: false,
+		success: callback
+	})
+}
 
 
 

@@ -32,6 +32,9 @@ var show = {
   },
   editService: function(){
     $('.editService').removeClass('hiddenForm').addClass('visible');
+  },
+  companyCreate: function(){
+    $('.createCompany').removeClass('hiddenForm').addClass('visible');
   }
 }
 
@@ -47,6 +50,10 @@ var hide = {
   },
   editService: function(){
     $('.editService').removeClass('visible').addClass('hiddenForm');
+  },
+  companyCreate: function(){
+    $('.createCompany').removeClass('visible').addClass('hiddenForm');
+
   }
 }
 

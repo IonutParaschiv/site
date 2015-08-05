@@ -61,15 +61,15 @@
 
 <!-- COMPANY BLOCK -->
     <div class="submenu_item visible">
+    <div class="form-group top_group">
+          <select onchange="company.get()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelect" >
+            <option value="0">Nothing selected</option>
+          </select>
+          <button class="btn btn-wide btn-custom1 noHover" onclick="show.companyCreate();return false;">Create new company</button>
+        </div>
+      <script>company.getAll();</script>
       <div class="companyBlocks availableCompanies">
         <div class="userfeedback_company_edit"></div>
-        <div class="form-group top_group">
-            <select onchange="company.get()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelect" >
-              <option value="0">Nothing selected</option>
-            </select>
-            <button class="btn btn-wide btn-custom1 noHover" onclick="show.staffCreate();return false;">Create new company</button>
-          </div>
-        <script>company.getAll();</script>
         <form id="companyEditForm">
             
             <div class="form-group">
@@ -85,12 +85,15 @@
               <textarea class="form-control" id="openingH" name="openingH"  placeholder="Company Opening Hours"></textarea>
             </div>
             <br/>
-            <button type="submit" onclick="company.edit(); return false;" class="btn companyControlBtn btn-default button-half">Save</button>
-            <button type="submit" onclick="company.delete(); return false;" class="btn companyControlBtn btn-danger button-half">Delete</button>
+            <button type="submit" onclick="company.edit(); return false;" class="btn companyControlBtn btn-default button-half">
+              <span class="glyphicon glyphicon-ok-sign"></span> Save
+            </button>
+            <button type="submit" onclick="company.delete(); return false;" class="btn companyControlBtn btn-danger button-half">
+              <span class="glyphicon glyphicon-remove-sign"></span>   Delete
+            </button>
         </form>
       </div>
-      <div class="createCompany companyForm companyBlocks hiddenForm">
-        <h5 class="formTitle"> Create new company</h5>
+      <div class="createCompany companyForm company hiddenForm">
         <div class="userfeedback_company_create"></div>
         <form id="companyCreateForm">
             <div class="form-group">
@@ -106,7 +109,13 @@
               <textarea class="form-control" id="openingH" name="openingH"  placeholder="Company Opening Hours"></textarea>
             </div>
             <br/>
-            <button type="submit" onclick="company.create(); return false;" class="btn btn-default button-wide">Save</button>
+            <button type="submit" onclick="company.create();return false;" class="btn btn-default button-half">
+              <span class="glyphicon glyphicon-ok-sign"></span> Save
+            </button>
+            <button  onclick="hide.companyCreate();return false;" class="btn btn-default button-half btn-warning">
+              <span class="glyphicon glyphicon-ban-circle"></span>Cancel
+            </button>
+            <!-- <button type="submit" onclick="company.create(); return false;" class="btn btn-default button-wide">Save</button> -->
         </form>
       </div>
     </div>
@@ -144,7 +153,7 @@
             <span class="glyphicon glyphicon-ok-sign"></span> Save
           </button>
           <button  onclick="hide.staffCreate();return false;" class="btn btn-default button-half btn-warning">
-            <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+            <span class="glyphicon glyphicon-ban-circle"></span>Cancel
           </button>
       </form>
     </div>
@@ -171,7 +180,7 @@
             <span class="glyphicon glyphicon-ok-sign"></span> Update
           </button>
           <button  onclick="hide.editStaff();return false;" class="btn btn-default button-half btn-warning">
-            <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+            <span class="glyphicon glyphicon-ban-circle"></span>Cancel
           </button>
       </form>
     </div>
@@ -214,7 +223,7 @@
               <span class="glyphicon glyphicon-ok-sign"></span> Save
             </button>
             <button  onclick="hide.serviceCreate();return false;" class="btn btn-default button-half btn-warning">
-              <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+              <span class="glyphicon glyphicon-ban-circle"></span>Cancel
             </button>
         </form>
       </div>
@@ -238,8 +247,8 @@
             <button type="submit" onclick="service.edit(); return false;" class="btn btn-default button-half">
               <span class="glyphicon glyphicon-ok-sign"></span> Update
             </button>
-            <button  onclick="hide.serviceCreate();return false;" class="btn btn-default button-half btn-warning">
-              <span class="glyphicon glyphicon-remove-sign"></span>Cancel
+            <button  onclick="hide.editService();return false;" class="btn btn-default button-half btn-warning">
+              <span class="glyphicon glyphicon-ban-circle"></span>Cancel
             </button>
         </form>
       </div>
