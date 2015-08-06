@@ -17,3 +17,7 @@
 .inputRed:focus{
 	border: 1px solid red;
 }
+.bookingConfDetails{
+    color: #666;
+    padding-right: 30px;
+}

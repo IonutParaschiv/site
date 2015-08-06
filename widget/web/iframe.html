@@ -27,13 +27,14 @@
 	<fieldset>
 		<h2 class="fs-title">Booking Details</h2>
 		<h3 class="fs-subtitle">Choose your desired service and staff member, as well as the date you wish to book the service for</h3>
+		<input type="hidden" name="companyId" id="compId" value="">
 		<select id="servicesAvailable" name="service" onchange="getStaff(QueryString.companyId)">
 			<option value="0">Choose your service</option>
 		</select>
 		<select id="staffAvailable" name="staff">
 			<option value="0">Choose your staff member</option>
 		</select>
-		<input id="datetimepicker" type="text" name="date" placeholder="Date" required/>
+		<input id="datetimepicker" type="text" name="date" placeholder="Date" required value=''/>
 			
 
 		<input type="button" name="next" class="next action-button" value="Next" />
@@ -42,8 +43,8 @@
 		<h2 class="fs-title">Your information</h2>
 		<h3 class="fs-subtitle">We need a few more information about you</h3>
 		<span class='userfeedback'></span>
-		<input type="text" name="name" placeholder="Name" />
-		<input type="text" name="surname" placeholder="Surname" />
+		<input type="text" name="name" id="name" placeholder="Name" />
+		<input type="text" name="surname" id="surname" placeholder="Surname" />
 		<input type="email" name="email" placeholder="Email" id="email"/>
 		<input type="text" name="phone" placeholder="Phone" />
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
@@ -60,12 +61,20 @@
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Submit</h2>
-		<h3 class="fs-subtitle">We will never sell it</h3>
-		<input type="text" name="fname" placeholder="First Name" />
+		<h3 class="fs-subtitle">Read through your booking details and submit</h3>
+		<div class="booking_details">
+			<p><span class="bookingConfDetails">Name: </span><span id="bookingName"></span></p>
+			<p><span class="bookingConfDetails">Surname: </span><span id="bookingSurname"></span></p>
+			<p><span class="bookingConfDetails">Service: </span><span id="bookingService"></span></p>
+			<p><span class="bookingConfDetails">Staff Member: </span><span id="bookingStaff"></span></p>
+			<p><span class="bookingConfDetails">Date: </span><span id="bookingDate"></span></p>
+
+		</div>
+		<!-- <input type="text" name="fname" placeholder="First Name" />
 		<input type="text" name="lname" placeholder="Last Name" />
-		<input type="text" name="phone" placeholder="Phone" />
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
-		<input type="submit" name="submit" class="submit action-button" value="Submit" />
+		<input type="text" name="phone" placeholder="Phone" /> -->
+		<input type="button" id="previousPage" name="previous" class="previous action-button" value="Previous" />
+		<input type="submit" id="createBooking" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
 </form>
 
@@ -80,9 +89,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#datetimepicker').datetimepicker();
+	$('#datetimepicker').datetimepicker({
+		format:'Y-m-d H:i'
+	});
 	getServices(QueryString.companyId);
-	// console.log(QueryString.companyId);
+	$('#compId').val(QueryString.companyId);
 })
 </script>
 

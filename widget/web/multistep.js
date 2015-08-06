@@ -28,31 +28,32 @@ $(".next").click(function(){
 	if($(this).hasClass('checkCode')){
 		var code = $('#confCode').val();
 
-		if((code == '') || (code.length != 6)){
-			$('.userfeedbackCode').html('Please fill in a valid code');
-			$('#confCode').focus()
-	        animating = false;
-	        return true;
-		}else{
-			animating = false;
-			$('.userfeedbackCode').html('');
-			getCodeData(code, function(data){
+		var valid = false;
+
+		getCodeData(code, function(data){
 				data = JSON.parse(data);
 				if(data.status == true){
 					$('.userfeedbackCode').html('');
-			        animating = true;
-					console.log('im true')
+			        valid = true;
+
+			        fillConfirmation();
 				}else{
-					console.log(animating);
 					$('.userfeedbackCode').html('Please fill in a valid code');
 					$('#confCode').focus()
-			        animating = false;
+			        valid = false;
 			        return false;
 				}
 				
 			});
 
-
+		if((code == '') || (code.length != 6) || valid == false){
+			$('.userfeedbackCode').html('Please fill in a valid code');
+			$('#confCode').focus()
+	        animating = false;
+	        return true;
+		}else{
+			animating = true;
+			$('.userfeedbackCode').html('');
 		}
 	}
 
@@ -122,6 +123,7 @@ $(".previous").click(function(){
 
 
 $(".submit").click(function(){
-	console.log($("#msform").serialize());
+
+	createBooking();
 	return false;
 })

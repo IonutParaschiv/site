@@ -28,7 +28,7 @@ function getServices(companyId){
       type:"POST",
       url: url+ "booking.php",
       data: args,
-      success: function(data){
+      success: function(data){	
         data = JSON.parse(data);
         if(data.success){
             var services = JSON.parse(data.data);
@@ -99,6 +99,43 @@ var getCodeData =  function (code, callback){
 	})
 }
 
+function fillConfirmation(){
+	//#msform
+	var name = $('#msform input#name').val();
+	var surname = $('#msform input#surname').val();
+	var service = $('#msform #servicesAvailable option:selected').text();
+	var staff = $('#msform #staffAvailable option:selected').text();
+	var date = $('#msform #datetimepicker').val();
+
+
+	$('#bookingName').html(name);
+	$('#bookingSurname').html(surname);
+	$('#bookingService').html(service);
+	$('#bookingStaff').html(staff);
+	$('#bookingDate').html(date);
+
+}
+function createBooking(){
+	var args = "method=createBooking&"+ $("#msform").serialize();
+
+	$.ajax({
+		type: "POST",
+		url: url+ "booking.php",
+		data: args,
+		success: function(data){
+			data = JSON.parse(data);
+
+			if(data.success){
+				console.log('success');
+				$('.booking_details').html('<h3> Your booking has been saved. We will contact you shortly');
+				$('#createBooking').hide();
+				$('#previousPage').hide();
+			}else{
+				console.log('fail');
+			}
+		}
+	})
+}
 
 
 // MISC FUNCTIONS

@@ -72,6 +72,47 @@ if(!empty($_POST)){
 
         echo json_encode($result);
         break;
+    case 'createBooking':
+
+        $url = API_URL.'/api/v2/company/'.$_POST['companyId'].'/booking';
+        $code = $_POST['confCode'];
+        $params = new stdClass();
+        $params->company_id = $_POST['companyId'];
+        $params->service_id = $_POST['service'];
+        $params->staff_id = $_POST['staff'];
+        $params->start = $_POST['date'];
+        $params->name = $_POST['name'];
+        $params->surname = $_POST['surname'];
+        $params->email = $_POST['email'];
+        $params->phone = $_POST['phone'];
+
+        $auth = array(
+            'email' => 'ionut@htd.ro',
+            'password' => '1234'
+            );
+
+        $response = PostRequest($url, $params, $auth);
+
+        $return = new stdClass();
+        if($response->success){
+
+            $return->success = true;
+
+            $host = WEBSERVICE_URL.'/webservice/';
+
+            $params = new stdClass();
+            $params->method = "expireCode";
+            $params->code = $code;
+
+            $result = callWebService($host, $params);
+
+
+        }else{
+            $return->success = false;
+
+        }
+        echo json_encode($return);
+        break;
     default:
         # code...
         break;
