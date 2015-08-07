@@ -522,6 +522,34 @@ switch ($_POST['method']) {
             echo $response;
             break;
     default:
+        case 'getBookings':
+            unset($_POST['method']);
+            $data = cleanData($_POST);
+
+            $companyId = $data['companyId'];
+            $password = $_SESSION['token'];
+            $email = $_SESSION['email'];
+
+            $auth = array(
+                'email' => $email,
+                'password' => $password
+                );
+
+            $url = API_URL.'/api/v2/company/'.$data['companyId'].'/booking/';
+
+            $response = getData($url,$auth);
+
+            if($response->success){
+                echo json_encode($response);
+            }else{
+                $json = array(
+                        'success' => false,
+                        'message' => 'There has been an issue'
+                    );
+                echo json_encode($json);die();
+            }
+
+            break;
         echo "Unknown service";
         die;
         break;

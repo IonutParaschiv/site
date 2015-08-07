@@ -56,7 +56,24 @@ var hide = {
 
   }
 }
-
+function hourDropdown(){
+  var hours, minutes
+  var option = '';
+    for(var i = 0; i <= 1425; i += 5){
+        hours = Math.floor(i / 60);
+        minutes = i % 60;
+        if (minutes < 10){
+            minutes = '0' + minutes; // adding leading zero
+        }
+        ampm = hours % 24 < 12 ? 'AM' : 'PM';
+        if (hours < 10){
+            hours = "0"+hours;
+        }
+        var hm =  hours+":"+minutes;
+        option = option + "<option value='"+hm+"'>"+hm+"</option>";
+     }
+     return option;
+}
 function getVal(selector){
   return selector.value;
 }

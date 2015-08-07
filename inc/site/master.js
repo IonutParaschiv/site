@@ -217,8 +217,35 @@ var company = {
         }
       }
     });
+  },
+  getCustom: function(){
+    var args = "method=getAllCompanies";
+    $.ajax({
+      type:"POST",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        data = JSON.parse(data);
+        if(data.success){
+          var companies = JSON.parse(data.data)
+          var html = '<option value="0">Nothing selected</option>';
+          var selected = 'selected';
+          if (companies != undefined && companies.length != 0) {
+                for(var i = 0; i<companies.length; i++){
+                  html += '<option '+selected+' value="'+companies[i].id+'">'+companies[i].name+'</option>';
+                  
+                  selected = '';
+                }
+                $('.availableCompaniesSelect').empty();
+                $('.availableCompaniesSelect').append(html);
+                company.get(companies[0].id);
+                booking.get();
+            }
+          
+        }
+      }
+    });
   }
-
 
 };
 var staff = {
@@ -490,6 +517,46 @@ var service = {
             $('.editService #duration').val(service[i].duration);
           }
         }
+      }
+    });
+  }
+
+}
+
+var booking = {
+
+  get: function(){
+    var companyId = $('.calendarContainer #availableCompaniesSelect').val();
+
+    var args = "method=getBookings&companyId="+companyId;
+
+    $.ajax({
+      type: "POST",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        data = JSON.parse(data);
+        if(data.success){
+          var bookings = JSON.parse(data.data);
+          var events = [];
+          if(bookings.length !=0){
+           for(var x = 0; x<bookings.length; x++){
+              var eventObj = {
+                title: bookings[x].serviceDetails.name,
+                start:  bookings[x].start,
+                end: bookings[x].end,
+                staffName: bookings[x].staffDetails.name,
+                backgroundColor: '#F05146',
+                borderColor: '#000'
+              }
+              events.push(eventObj);
+            }
+            
+          }
+        }
+
+
+        renderCalendar(events);
       }
     });
   }

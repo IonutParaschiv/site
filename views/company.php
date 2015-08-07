@@ -66,7 +66,7 @@
             <option value="0">Nothing selected</option>
           </select>
           <button class="btn btn-wide btn-custom1 noHover" onclick="show.companyCreate();return false;">Create new company</button>
-        </div>
+    </div>
       <script>company.getAll();</script>
       <div class="companyBlocks availableCompanies">
         <div class="userfeedback_company_edit"></div>
