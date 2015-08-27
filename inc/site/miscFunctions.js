@@ -27,10 +27,12 @@ var show = {
       $('.editStaff').removeClass('hiddenForm').addClass('visible');
   },
   serviceCreate: function(){
+    $('.createServices #duration').html(hourDropdown);
     $('.editService').removeClass('visible').addClass('hiddenForm');
     $('.createServices').removeClass('hiddenForm').addClass('visible');
   },
   editService: function(){
+    $('.editService #serviceDuration').html(hourDropdown);
     $('.editService').removeClass('hiddenForm').addClass('visible');
   },
   companyCreate: function(){
@@ -57,22 +59,45 @@ var hide = {
   }
 }
 function hourDropdown(){
-  var hours, minutes
+  var hours, minutes, seconds
   var option = '';
-    for(var i = 0; i <= 1425; i += 5){
+    for(var i = 0; i <= 540; i += 5){
+        hours = Math.floor(i / 60);
+        minutes = i % 60;
+        seconds = i * 60;
+        if (minutes < 10){
+            minutes = '0' + minutes; // adding leading zero
+            
+        }
+        ampm = hours % 24 < 12 ? 'AM' : 'PM';
+        if (hours < 10){
+            hours = "0"+hours;
+        }
+        console.log(seconds);
+        var hm =  hours+":"+minutes;
+        option = option + "<option value='"+seconds+"'>"+hm+"</option>";
+     }
+     return option;
+}
+
+function populate(selector) {
+    var select = $(selector);
+    var hours, minutes, ampm;
+    for(var i = 420; i <= 1320; i += 15){
         hours = Math.floor(i / 60);
         minutes = i % 60;
         if (minutes < 10){
             minutes = '0' + minutes; // adding leading zero
         }
         ampm = hours % 24 < 12 ? 'AM' : 'PM';
-        if (hours < 10){
-            hours = "0"+hours;
+        hours = hours % 12;
+        if (hours === 0){
+            hours = 12;
         }
-        var hm =  hours+":"+minutes;
-        option = option + "<option value='"+hm+"'>"+hm+"</option>";
-     }
-     return option;
+        select.append($('<option></option>')
+            .attr('value', i)
+            .text(hours + ':' + minutes + ' ' + ampm)); 
+    }
 }
 function getVal(selector){
   return selector.value;

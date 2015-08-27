@@ -216,7 +216,9 @@
               <textarea class="form-control" id="description" name="description"  placeholder="Service Description"></textarea>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="duration" name="duration"  placeholder="Duration" value="">
+              <select type="text" class="form-control"name="duration" id="duration" placeholder="Duration">
+                <option value="0"></option>
+              </select>
             </div>
             <br/>
             <button type="submit" onclick="service.create(); return false;" class="btn btn-default button-half">
@@ -241,7 +243,9 @@
               <textarea class="form-control" id="description" name="description"  placeholder="Service Description"></textarea>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="duration" name="duration"  placeholder="Duration" value="">
+              <select type="text" class="form-control" name="duration" id="serviceDuration" placeholder="Duration">
+                <option value="0"></option>
+              </select>
             </div>
             <br/>
             <button type="submit" onclick="service.edit(); return false;" class="btn btn-default button-half">
