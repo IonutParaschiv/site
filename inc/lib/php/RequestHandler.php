@@ -26,12 +26,20 @@ switch ($_POST['method']) {
         $args->email = $_POST['email'];
         $args->password = $_POST['password'];
 
-        $auth = array(
-            'email' => 'master@api.com',
-            'password' => 'ionut280590'
-            );
 
-        $result = PostRequest('/api/v2/user', $args, $auth);
+        #for live
+        // $auth = array(
+        //     'email' => 'ionut@htd.ro',
+        //     'password' => '1234'
+        //     );
+
+        #for dev
+        $auth = array(
+            'email' => 'webmaster@api.com',
+            'password' => '1b5304448a3b34768c3f2b4e5ab818e6'
+            );
+        $result = PostRequest(API_URL.'/api/v2/user/', $args, $auth);
+
         if($result->success){
             echo json_encode($result);
         }
@@ -556,6 +564,7 @@ switch ($_POST['method']) {
 }
 
 function PostRequest($host, $args, $authArgs = array()){
+    
     $params = array(
             'key' => 'ec75c64b295ed40a799c924e663a807b',
             'json' => json_encode($args)
@@ -577,6 +586,7 @@ function PostRequest($host, $args, $authArgs = array()){
 
     
     $jsondata = curl_exec($ch);
+
 
     curl_close($ch);
     # Decode JSON String
@@ -618,9 +628,7 @@ function PutRequest($host, $args, $authArgs = array()){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     
-    $jsondata = curl_exec($ch);
-
-    curl_close($ch);
+    $jsondata = curl_exec($ch);    curl_close($ch);
     # Decode JSON String
     if($data = json_decode($jsondata)) {
         $response = new stdClass();
@@ -698,8 +706,6 @@ function getData($path, $authArgs){
 
     
     $jsondata = curl_exec($ch);
-    // var_dump($path);
-    // var_dump($jsondata);
     curl_close($ch);
 
     if($data = json_decode($jsondata)) {
