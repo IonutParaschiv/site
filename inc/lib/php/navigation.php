@@ -1,4 +1,4 @@
-<?php 
+    <?php 
 	
 	$nav = '';
 	$loggedNav = '';
@@ -44,7 +44,7 @@
     $loggedNav .= '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My account<span class="caret"></span></a>';
     $loggedNav .= '<ul class="dropdown-menu">';
     $loggedNav .= '<li><a href="/bookrest/site/views/account.php">Bookings</a></li><li role="separator" class="divider"></li>';
-    $loggedNav .= '<li><a href="/bookrest/site/views/settings.php">Settings</a></li><li role="separator" class="divider"></li>';
+    #$loggedNav .= '<li><a href="/bookrest/site/views/settings.php">Settings</a></li><li role="separator" class="divider"></li>';
     $loggedNav .= '<li><a href="/bookrest/site/views/company.php">Company</a></li><li role="separator" class="divider"></li>';
     $loggedNav .= '<li><a href="/bookrest/site/views/widget.php">Widget</a></li>';
     $loggedNav .= '</ul></li>';

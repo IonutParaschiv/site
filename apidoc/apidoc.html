@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="apiDoc">
 <head>
 	<title>Api Documentation</title>
 </head>
+
+    <link rel="stylesheet" href="/bookrest/site/inc/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bookrest/site/inc/site/style.css">
+    <link rel="stylesheet" type="text/css" href="/bookrest/site/inc/site/subnav.css">
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/jquery-2.1.3.min.js"></script>
 <style type="text/css">
 	code{
 		padding:10px;
@@ -12,17 +17,33 @@
 		font-size: 11px;
 		line-height: 25px;
 	}
-	.tiles{
-		width: 33%;
-		border-right: 1px solid black;
-		display: inline-block;
-		vertical-align: top;
-	}
+	
 </style>
 <body>
+<nav class='navbar navbar-inverse navbar-static-top' role= "navigation">
+  <div class="main-nav container">
+  <div class="navbar-header">
+	<a class="navbar-brand" href="/bookrest/site">
+		<img src="/bookrest/site/inc/img/bookfy.png" alt="Brand" id="logo"/>
+	</a>
+	</div>
+  </div>
+</nav>
+<div class="stackedNav">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a data-target='userDoc' class='subnav_node' href="">User</a></li>
+        <li><a data-target='companyDoc' class='subnav_node' href="#">Comany</a></li>
+        <li><a data-target='serviceDoc' class='subnav_node' href="#">Services</a></li>
+        <li><a data-target='staffDoc' class='subnav_node' href="#">Staff</a></li>
+      </ul>
+  </div>
 <!-- CREATE USER -->
-<div class="userDoc tiles">
+<div class="docContainer">
+	
+<div class="userDoc tiles submenu_item visible">
+
 	<h3> Create user</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
 	<p>Url</p>
 	<code>http://localhost/bookrest/api/v2/user/</code>
 	<p>Method</p>
@@ -40,6 +61,8 @@
 	<br/><br><hr/>
 	<!-- EDIT USER -->
 	<h3> Edit user</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	
 	<p>Url</p>
 	<code>http://localhost/bookrest/api/v2/user/{userid}</code>
 	<p>Method</p>
@@ -52,11 +75,21 @@
 	}
 	</code>
 <br/><br><hr/>
+	<!-- GET USER -->
+	<h3> Get user</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>http://localhost/bookrest/api/v2/user/{userid}</code>
+	<p>Method</p>
+	<code>GET</code>
+	<br/>
+	<i>This method does not require any parameters
 </div>
 <!-- END USER DOC -->
-<div class="companyDoc tiles">
+<div class="companyDoc tiles submenu_item hidden">
 	<!-- Create company -->
 	<h3> Create Company</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
 	<p>Url</p>
 	<code>http://localhost/bookrest/api/v2/company/</code>
 	<p>Method</p>
@@ -74,6 +107,7 @@
 	<br/><br><hr/>
 	<!-- Edit company -->
 	<h3> Edit Company</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
 	<p>Url</p>
 	<code>http://localhost/bookrest/api/v2/company/{companyId}</code>
 	<p>Method</p>
@@ -90,7 +124,7 @@
 <br/><br><hr/>
 </div>
 <!-- END COMPANY DOC -->
-<div class="serviceDoc tiles">
+<div class="serviceDoc tiles submenu_item hidden">
 	<!-- Create company -->
 	<h3> Create Service</h3>
 	<p>Url</p>
@@ -127,7 +161,7 @@
 </div>
 <!-- END SERVIVE DOC -->
 
-<div class="staffDoc tiles">
+<div class="staffDoc tiles submenu_item hidden">
 	<!-- Create company -->
 	<h3> Create Service</h3>
 	<p>Url</p>
@@ -162,5 +196,9 @@
 	</code>
 <br/><br><hr/>
 </div>
+
+</div>
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/subnav.js"></script>
+
 </body>
 </html>

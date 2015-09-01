@@ -21,7 +21,9 @@
     <script type="text/javascript" src="/bookrest/site/inc/site/master.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="/bookrest/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/bookrest/site/inc/lib/js/zeroClipboard.js"></script>
     <script type="text/javascript" src="/bookrest/site/inc/site/miscFunctions.js"></script>
+    zeroClipboard.js
 
 
 </head>
@@ -40,11 +42,14 @@
 </nav>
 
   <div class="widget-container">
-    <xmp>
-      <img id="booking" style="width:150px; cursor : pointer; border: 0" src="http://localhost/bookrest/site/widget/booking.png" onclick="openBooking(1);"/>
-      <script type="text/javascript">  var companyId = 1;</script>
-      <script type="text/javascript" src="http://localhost/bookrest/site/widget/web/js/booking.js"></script>
-  </xmp>
+    <textarea id="fe_text" onChange="clip.setText(this.value)">
+      <img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/booking.png" onclick="openBooking(1);"/>
+      <script type="text/javascript" src="https://rest.ionutparaschiv.com/bookrest/site/widget/web/js/booking.js"></script>
+  </textarea><br/>
+  <button type="submit" class="btn btn-default" id="d_clip_button" onclick="">Copy to clipboard</button>
 </div>
+<div id="d_debug" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
+          <h3>Debug Console:</h3>
+        </div>
 </body>
 </html>
