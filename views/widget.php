@@ -9,7 +9,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html class="widgetPage">
 <head>
     <title>BookRest</title>
     <link rel="stylesheet" href="/bookrest/site/inc/lib/css/bootstrap.min.css">

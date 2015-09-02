@@ -345,7 +345,8 @@ footer{
 .docContainer h3{
     text-decoration: underline;
 }
-.apiDoc .navbar-static-top{
+.apiDoc .navbar-static-top,
+.widgetPage .navbar-static-top{
     top:0;
 }
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
