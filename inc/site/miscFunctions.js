@@ -103,44 +103,6 @@ function getVal(selector){
   return selector.value;
 }
 
-function copyToClipboard(){
-  var text = $('#widgetHtml').text();
-  alert('Your code has been copied.')
-  console.log(text);
-}
-
-
-var clip = null;
-    
-function $(id) { return document.getElementById(id); }
-    
-function init() {
-  clip = new ZeroClipboard.Client();
-  clip.setHandCursor( true );
-  
-  clip.addEventListener('load', function (client) {
-    debugstr("Flash movie loaded and ready.");
-  });
-  
-  clip.addEventListener('mouseOver', function (client) {
-    // update the text on mouse over
-    clip.setText( $('fe_text').value );
-  });
-  
-  clip.addEventListener('complete', function (client, text) {
-    debugstr("Copied text to clipboard: " + text );
-  });
-  
-  clip.glue( 'd_clip_button', 'd_clip_container' );
-}
-
-function debugstr(msg) {
-  var p = document.createElement('p');
-  p.innerHTML = msg;
-  $('d_debug').appendChild(p);
-}
-
-
 
 
 

@@ -23,7 +23,6 @@
     <script type="text/javascript" src="/bookrest/site/inc/lib/bootstrap_select/dist/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="/bookrest/site/inc/lib/js/zeroClipboard.js"></script>
     <script type="text/javascript" src="/bookrest/site/inc/site/miscFunctions.js"></script>
-    zeroClipboard.js
 
 
 </head>
