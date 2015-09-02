@@ -1,7 +1,9 @@
 <?php 
-define('API_URL', 'http://localhost/bookrest');
-define('WEBSERVICE_URL', 'http://localhost/bookrest');
+// define('API_URL', 'http://localhost/bookrest');
+// define('WEBSERVICE_URL', 'http://localhost/bookrest');
 
+define('API_URL', 'https://rest.ionutparaschiv.com/bookrest');
+define('WEBSERVICE_URL', 'https://rest.ionutparaschiv.com/bookrest');
 if(!empty($_POST)){
     switch ($_POST['method']) {
     case 'getServices':

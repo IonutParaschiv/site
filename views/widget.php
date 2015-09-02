@@ -42,13 +42,13 @@
 
   <div class="widget-container">
     <textarea id="fe_text" onChange="clip.setText(this.value)">
-      <img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/booking.png" onclick="openBooking(1);"/>
+      <img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/button.png" onclick="openBooking(1);"/>
       <script type="text/javascript" src="https://rest.ionutparaschiv.com/bookrest/site/widget/web/js/booking.js"></script>
   </textarea><br/>
-  <button type="submit" class="btn btn-default" id="d_clip_button" onclick="">Copy to clipboard</button>
+  <!-- <button type="submit" class="btn btn-default" id="d_clip_button" onclick="">Copy to clipboard</button> -->
 </div>
-<div id="d_debug" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
+<!-- <div id="d_debug" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
           <h3>Debug Console:</h3>
-        </div>
+</div> -->
 </body>
 </html>
