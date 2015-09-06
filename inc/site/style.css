@@ -349,6 +349,10 @@ footer{
 .widgetPage .navbar-static-top{
     top:0;
 }
+.widgetPage .top_group{
+    margin-top:70px;
+    padding-left: 40px;
+}
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}

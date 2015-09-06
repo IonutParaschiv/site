@@ -49,8 +49,8 @@
   <div class="stackedNav">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a data-target='companyForm' class='subnav_node' href="">Manage Company</a></li>
-        <li><a data-target='staffForm' class='subnav_node' href="#">Manage Staff</a></li>
         <li><a data-target='servicesForm' class='subnav_node' href="#">Manage Services</a></li>
+        <li><a data-target='staffForm' class='subnav_node' href="#">Manage Staff</a></li>
         <!-- <li><a href="#">Menu 3</a></li> -->
       </ul>
   </div>

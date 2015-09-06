@@ -21,8 +21,11 @@ function openBooking(companyId){
     
 }
 function closeOverlay(){
-	var overlay = window.parent.document.getElementById('fader');
-	overlay.parentNode.removeChild(overlay);
+	$('#closeOverlayBtn').click(function(){
+		var overlay = document.getElementById('fader');
+		overlay.parentNode.removeChild(overlay);
+	})
+	
 
 }
 

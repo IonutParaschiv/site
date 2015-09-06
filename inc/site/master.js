@@ -218,6 +218,51 @@ var company = {
       }
     });
   },
+  getAllWidget: function(){
+    var args = "method=getAllCompanies";
+
+    $.ajax({
+      type:"POST",
+      url: "/bookrest/site/inc/lib/php/RequestHandler.php",
+      data: args,
+      success: function(data){
+        data = JSON.parse(data);
+        if(data.success){
+          var companies = JSON.parse(data.data)
+          var html = '<option value="0">Nothing selected</option>';
+          var selected = 'selected';
+          if (companies != undefined && companies.length != 0) {
+
+                for(var i = 0; i<companies.length; i++){
+                  html += '<option '+selected+' value="'+companies[i].id+'">'+companies[i].name+'</option>';
+                  
+                  selected = '';
+                }
+                $('#availableCompaniesSelectWidget').empty();
+                $('#availableCompaniesSelectWidget').append(html);
+
+                company.appendWidget();
+            }
+          
+        }
+      }
+    });
+  },
+  appendWidget: function(){
+    var widget = '<img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/button.png" onclick="openBooking(1);"/>';
+        widget += '<script type="text/javascript" src="https://rest.ionutparaschiv.com/bookrest/site/widget/web/js/booking.js"></script>';
+
+    var compId = $('#availableCompaniesSelectWidget').val();
+    if(compId != 0){
+      widget = '<img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/button.png" onclick="openBooking('+compId+');"/>\n';
+      widget += '<script type="text/javascript" src="https://rest.ionutparaschiv.com/bookrest/site/widget/web/js/booking.js"></script>';
+    }else{
+      widget = 'There is no company selected';
+    }
+    $('#codeTextArea').text('');
+
+    $('#codeTextArea').text(widget);
+  },
   getCustom: function(){
     var args = "method=getAllCompanies";
     $.ajax({

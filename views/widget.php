@@ -39,11 +39,17 @@
         ?>
   </div>
 </nav>
+<div class="form-group top_group">
+          <select onchange="company.appendWidget()" class="availableCompaniesSelect" data-style="btn-primary" name="companyId" id="availableCompaniesSelectWidget" >
+            <option value="0">Nothing selected</option>
+          </select>
+    </div>
+      <script>company.getAllWidget();</script>
 
   <div class="widget-container">
-    <textarea id="fe_text" onChange="clip.setText(this.value)">
-      <img id="booking" style="width:150px; cursor : pointer; border: 0" src="https://rest.ionutparaschiv.com/bookrest/site/widget/button.png" onclick="openBooking(1);"/>
-      <script type="text/javascript" src="https://rest.ionutparaschiv.com/bookrest/site/widget/web/js/booking.js"></script>
+  <i>Select the company of choice from the dropdown, than copy the following snippent into your website</i>
+    <textarea id="codeTextArea" >
+      
   </textarea><br/>
   <!-- <button type="submit" class="btn btn-default" id="d_clip_button" onclick="">Copy to clipboard</button> -->
 </div>
