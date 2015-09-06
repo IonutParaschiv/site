@@ -29,47 +29,44 @@
 <div class="wide"></div>
 
 <div class="container">
-  <div class="col col-md-4">
-    <h2>Lorem ipsum</h2>
+ <div class="col col-md-4">
+    <h2>This is a Beta</h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+     This app is a beta platform which has as scope a school project.
+    <p>
+      Do you have any suggestions? Shoot me an email at: 
     </p>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
+     paraschivdionut[at]gmail.com
     </p>
   </div>
+  <div class="col col-md-4">
+    <h2>Get started now</h2>
+    <p>
+      Create an account and get your business online
+    </p>
+    <p>
+      Create unlimited companies, staff members and services. Bind them together and allow your customers to book your services with a simple HTML widget
+    </p>
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="modal" data-target=".registerModal" aria-haspopup="true" aria-expanded="false">Get an account now</button>
+  </div>
+  <div class="col col-md-4">
+    <h2>Use the API</h2>
+    <p>
+      Our solution is fully API based.
+    </p>
+    <p>
+      Create an account and integrate our application into your own platform of choice.
+    </p>
+    <p>
+      You can create your own interface and have everything in one place
+    </p>
+    <a href="/bookrest/site/apidoc/apidoc.html" type="button" class="btn btn-info dropdown-toggle"  aria-haspopup="true" aria-expanded="false">See API documentation</a>
 
-  <div class="col col-md-4">
-    <h2>Lorem ipsum</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-  </div>
-  <div class="col col-md-4">
-    <h2>Lorem ipsum</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at lobortis risus, non dictum sapien. Quisque id hendrerit elit. Duis ac purus libero.
-    </p>
   </div>
 </div>
-<footer class='footer'>
-  footer contents here
-</footer>
+<!-- <footer class='footer'>
+</footer> -->
 
 <!--modals-->
 <!--LOGIN MODAL-->

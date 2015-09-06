@@ -32,7 +32,7 @@
 <div class="stackedNav">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a data-target='userDoc' class='subnav_node' href="">User</a></li>
-        <li><a data-target='companyDoc' class='subnav_node' href="#">Comany</a></li>
+        <li><a data-target='companyDoc' class='subnav_node' href="#">Company</a></li>
         <li><a data-target='serviceDoc' class='subnav_node' href="#">Services</a></li>
         <li><a data-target='staffDoc' class='subnav_node' href="#">Staff</a></li>
       </ul>
@@ -49,6 +49,7 @@
 	<p>Method</p>
 	<code>POST</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Joe",
@@ -57,8 +58,10 @@
 		"password":"1234"
 	}
 	</code>
-
-	<br/><br><hr/>
+	
+	<br/>
+	<p>If successful, this call returns an object containing the created user</p>
+	<br><hr/>
 	<!-- EDIT USER -->
 	<h3> Edit user</h3>
 	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
@@ -68,13 +71,17 @@
 	<p>Method</p>
 	<code>PUT</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Joe",
 		"surname": "Doe"
 	}
 	</code>
-<br/><br><hr/>
+<br/>
+	<p>If successful, this call returns an object containing the edited user</p>
+	
+<br><hr/>
 	<!-- GET USER -->
 	<h3> Get user</h3>
 	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
@@ -83,7 +90,7 @@
 	<p>Method</p>
 	<code>GET</code>
 	<br/>
-	<i>This method does not require any parameters
+	<i>This method does not require any parameters</i>
 </div>
 <!-- END USER DOC -->
 <div class="companyDoc tiles submenu_item hidden">
@@ -95,6 +102,7 @@
 	<p>Method</p>
 	<code>POST</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "My company",
@@ -104,7 +112,9 @@
 	}
 	</code>
 
-	<br/><br><hr/>
+	<br/>
+	<p>If successful, this call returns an object containing the created company</p>
+	<br><hr/>
 	<!-- Edit company -->
 	<h3> Edit Company</h3>
 	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
@@ -113,6 +123,7 @@
 	<p>Method</p>
 	<code>PUT</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "My company",
@@ -121,8 +132,31 @@
 		"opening_h": "Mon-Fri: 09:00 - 17:00"
 	}
 	</code>
+<br/>
+	<p>If successful, this call returns an object containing the edited company</p>
+<br><hr/>
+	<h3> Get Company</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/</code>
+	<p>Method</p>
+	<code>GET</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
 <br/><br><hr/>
+	<h3> Delete Company</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}</code>
+	<p>Method</p>
+	<code>DELETE</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
+	<br/>
+	<p>If successful, this call returns true</p>
+
 </div>
+
 <!-- END COMPANY DOC -->
 <div class="serviceDoc tiles submenu_item hidden">
 	<!-- Create company -->
@@ -132,6 +166,7 @@
 	<p>Method</p>
 	<code>POST</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Service #1",
@@ -149,6 +184,7 @@
 	<p>Method</p>
 	<code>PUT</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Service #1",
@@ -158,17 +194,37 @@
 	}
 	</code>
 <br/><br><hr/>
+<h3> Get Service</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}/service/</code>
+	<p>Method</p>
+	<code>GET</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
+<br/><br><hr/>
+	<h3> Delete Service</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}/service/{serviceId}</code>
+	<p>Method</p>
+	<code>DELETE</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
+	<br/>
+	<p>If successful, this call returns true</p>
 </div>
 <!-- END SERVIVE DOC -->
 
 <div class="staffDoc tiles submenu_item hidden">
 	<!-- Create company -->
-	<h3> Create Service</h3>
+	<h3> Create Staff</h3>
 	<p>Url</p>
 	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}/staff</code>
 	<p>Method</p>
 	<code>POST</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Staff",
@@ -186,6 +242,7 @@
 	<p>Method</p>
 	<code>PUT</code>
 	<p>Parameters</p>
+	<i>json = </i>
 	<code>
 	{
 		"name": "Staff",
@@ -195,6 +252,26 @@
 	}
 	</code>
 <br/><br><hr/>
+<h3> Get Staff</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}/staff/</code>
+	<p>Method</p>
+	<code>GET</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
+<br/><br><hr/>
+	<h3> Delete Staff</h3>
+	<p> This method requires <a href="http://php.net/manual/en/features.http-auth.php" target="_blank">Basic Authenthication </a></p>
+	<p>Url</p>
+	<code>https://rest.ionutparaschiv.com/bookrest/api/v2/company/{companyId}/staff/{staffId}</code>
+	<p>Method</p>
+	<code>DELETE</code>
+	<p>Parameters</p>
+	<i>This method does not require any parameters</i>
+	<br/>
+	<p>If successful, this call returns true</p>
+</div>
 </div>
 
 </div>
