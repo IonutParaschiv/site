@@ -591,6 +591,11 @@ var booking = {
                 start:  bookings[x].start,
                 end: bookings[x].end,
                 staffName: bookings[x].staffDetails.name,
+                staffSurname: bookings[x].staffDetails.surname,
+                custName: bookings[x].cust_name,
+                custSurname: bookings[x].cust_surname,
+                custEmail: bookings[x].cust_email,
+                custPhone: bookings[x].cust_phone,
                 backgroundColor: '#F05146',
                 borderColor: '#000'
               }

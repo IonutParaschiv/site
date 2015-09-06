@@ -64,6 +64,22 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="bookingModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalTitle"></h4>
+      </div>
+      <div class="modal-body">
+        <p><span class="fieldLabel">Customer Name: </span> <span id="custName"></span></p>
+        <p><span class="fieldLabel">Customer Email: </span> <span id="custEmail"></span></p>
+        <p><span class="fieldLabel">Customer Phone: </span> <span id="custPhone"></span></p>
+        <p><span class="fieldLabel">Staff Member: </span> <span id="staffMemb"></span></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
       <script> company.getCustom(); </script>
 </body>
 </html>

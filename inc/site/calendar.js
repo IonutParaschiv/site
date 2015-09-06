@@ -18,7 +18,16 @@
 			width:650,
 			scrollTime: "09:00:00",
 			defaultView: 'agendaDay',
-			events: events
+			events: events,
+			eventClick: function(calEvent){
+				$('#modalTitle').text('').text(calEvent.title + ' with ' + calEvent.custName + ' ' + calEvent.custSurname);
+				$('#custName').text('').text(calEvent.custName + ' ' + calEvent.custSurname);
+				$('#custEmail').text('').text(calEvent.custEmail);
+				$('#custPhone').text('').text(calEvent.custPhone);
+				$('#staffMemb').text('').text(calEvent.staffName + ' ' + calEvent.staffSurname);
+
+				$('#bookingModal').modal('show');
+			}
 
 		});
 		// $('#calendar').fullCalendar('today');

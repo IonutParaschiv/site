@@ -353,6 +353,10 @@ footer{
     margin-top:70px;
     padding-left: 40px;
 }
+#bookingModal .fieldLabel{
+    font-weight: bold;
+    color:black;
+}
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}
